@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Catalogue | Visual Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Syne:wght@400;600;700&family=Outfit:wght@400;500;600&family=Crimson+Pro:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: #111114;
+      --bg-card-hover: #18181c;
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.35);
+      --accent: #f97316;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 12, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 100px;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Card Styles */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========== TYPOGRAPHY SECTION ========== */
+    .font-preview {
+      padding: 2rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .font-sample {
+      font-size: 2rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    .font-alphabet {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+    }
+
+    /* Individual Font Families */
+    .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+    .font-instrument-serif { font-family: 'Instrument Serif', serif; }
+    .font-fraunces { font-family: 'Fraunces', serif; }
+    .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-dm-sans { font-family: 'DM Sans', sans-serif; }
+    .font-syne { font-family: 'Syne', sans-serif; }
+    .font-outfit { font-family: 'Outfit', sans-serif; }
+    .font-crimson { font-family: 'Crimson Pro', serif; }
+    .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+
+    /* ========== COLOR PALETTES SECTION ========== */
+    .palette-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .palette-colors {
+      display: flex;
+      height: 120px;
+    }
+
+    .palette-color {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: flex 0.3s ease;
+    }
+
+    .palette-color:hover {
+      flex: 1.5;
+    }
+
+    .palette-info {
+      padding: 1rem 1.25rem;
+      background: var(--bg-card);
+    }
+
+    .palette-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .palette-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========== 3D SHAPES SECTION ========== */
+    .shape-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 280px;
+    }
+
+    .shape-preview {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 1.5rem;
+      perspective: 800px;
+    }
+
+    .shape-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    .shape-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg, #c9a87c 0%, #b8956d 25%, #a67c52 50%, #8b5e34 75%, #6d4422 100%);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(180, 130, 80, 0.2),
+        inset 0 3px 6px rgba(255, 255, 255, 0.3),
+        inset 0 -5px 12px rgba(60, 30, 10, 0.3);
+    }
+
+    .shape-rounded { border-radius: 28px; }
+    .shape-circle { border-radius: 50%; }
+    .shape-pill { border-radius: 60px; width: 160px !important; height: 80px !important; margin-top: 20px; }
+    .shape-blob {
+      border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
+      animation: blobMorph 8s ease-in-out infinite;
+    }
+    .shape-hexagon {
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border-radius: 0;
+    }
+    .shape-shield {
+      clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%);
+      border-radius: 0;
+    }
+    .shape-squircle {
+      border-radius: 35%;
+    }
+    .shape-diamond {
+      transform: rotate(45deg) scale(0.75);
+      border-radius: 12px;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
+      50% { transform: translateY(-10px) rotateX(-3deg) rotateY(5deg); }
+    }
+
+    @keyframes blobMorph {
+      0%, 100% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+      25% { border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%; }
+      50% { border-radius: 40% 50% 60% 50% / 60% 40% 50% 50%; }
+      75% { border-radius: 50% 40% 50% 60% / 50% 50% 40% 60%; }
+    }
+
+    /* ========== GLASS EFFECTS SECTION ========== */
+    .glass-card {
+      position: relative;
+      min-height: 200px;
+      overflow: hidden;
+    }
+
+    .glass-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .glass-panel {
+      position: absolute;
+      inset: 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-light {
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .glass-medium {
+      backdrop-filter: blur(40px) saturate(180%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .glass-heavy {
+      backdrop-filter: blur(60px) saturate(200%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-dark {
+      backdrop-filter: blur(40px) saturate(180%);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-tinted {
+      backdrop-filter: blur(30px) saturate(200%);
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .glass-frosted {
+      backdrop-filter: blur(80px) saturate(120%) brightness(1.1);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ========== SHADOWS SECTION ========== */
+    .shadow-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .shadow-demo {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(145deg, #3a3a42, #2a2a32);
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+    }
+
+    .shadow-basic {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-soft {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .shadow-layered {
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .shadow-glow {
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(249, 115, 22, 0.3);
+    }
+
+    .shadow-inner {
+      box-shadow:
+        inset 0 4px 8px rgba(255, 255, 255, 0.1),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .shadow-dramatic {
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(139, 92, 246, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+
+    /* ========== ANIMATIONS SECTION ========== */
+    .anim-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 220px;
+    }
+
+    .anim-demo {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .anim-float {
+      animation: demoFloat 3s ease-in-out infinite;
+    }
+    @keyframes demoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .anim-pulse {
+      animation: demoPulse 2s ease-in-out infinite;
+    }
+    @keyframes demoPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .anim-spin {
+      animation: demoSpin 4s linear infinite;
+    }
+    @keyframes demoSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .anim-bounce {
+      animation: demoBounce 1s ease infinite;
+    }
+    @keyframes demoBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .anim-shake {
+      animation: demoShake 0.5s ease-in-out infinite;
+    }
+    @keyframes demoShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .anim-morph {
+      animation: demoMorph 4s ease-in-out infinite;
+    }
+    @keyframes demoMorph {
+      0%, 100% { border-radius: 12px; }
+      50% { border-radius: 50%; }
+    }
+
+    /* ========== GRADIENTS SECTION ========== */
+    .gradient-card {
+      min-height: 160px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-info {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .grad-sunset {
+      background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff9ff3 100%);
+    }
+    .grad-ocean {
+      background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f64f59 100%);
+    }
+    .grad-forest {
+      background: linear-gradient(160deg, #0f3443 0%, #34e89e 100%);
+    }
+    .grad-midnight {
+      background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    }
+    .grad-fire {
+      background: linear-gradient(135deg, #f12711 0%, #f5af19 100%);
+    }
+    .grad-cool {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+    .grad-aurora {
+      background: linear-gradient(135deg, #00c9ff 0%, #92fe9d 50%, #f0f 100%);
+    }
+    .grad-noir {
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    .grad-mesh {
+      background:
+        radial-gradient(at 40% 20%, #ff6b6b 0px, transparent 50%),
+        radial-gradient(at 80% 0%, #feca57 0px, transparent 50%),
+        radial-gradient(at 0% 50%, #667eea 0px, transparent 50%),
+        radial-gradient(at 80% 100%, #764ba2 0px, transparent 50%),
+        radial-gradient(at 0% 100%, #34e89e 0px, transparent 50%),
+        #0f0c29;
+    }
+
+    /* ========== TEXTURES SECTION ========== */
+    .texture-card {
+      min-height: 180px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .texture-noise {
+      background-color: #1a1a2e;
+      position: relative;
+    }
+    .texture-noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.15;
+      border-radius: 16px;
+    }
+
+    .texture-dots {
+      background-color: #16213e;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .texture-grid {
+      background-color: #0f3460;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .texture-diagonal {
+      background-color: #1a1a2e;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.02) 10px,
+        rgba(255, 255, 255, 0.02) 20px
+      );
+    }
+
+    /* ========== EASING SECTION ========== */
+    .easing-card {
+      padding: 1.5rem;
+    }
+
+    .easing-demo {
+      height: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .easing-ball {
+      width: 30px;
+      height: 30px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+
+    .easing-card:hover .easing-ball {
+      left: calc(100% - 35px);
+    }
+
+    .ease-linear .easing-ball { transition: left 1s linear; }
+    .ease-ease .easing-ball { transition: left 1s ease; }
+    .ease-expo .easing-ball { transition: left 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .ease-back .easing-ball { transition: left 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .ease-elastic .easing-ball { transition: left 1s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    .ease-circ .easing-ball { transition: left 1s cubic-bezier(0.85, 0, 0.15, 1); }
+
+    .easing-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.5rem;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    /* ========== BUTTONS SECTION ========== */
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-solid {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: white;
+      border: none;
+    }
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-3d {
+      background: linear-gradient(180deg, #fb923c 0%, #f97316 100%);
+      color: white;
+      box-shadow: 0 4px 0 #c2410c;
+      transform: translateY(0);
+    }
+    .btn-3d:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #c2410c;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-title">Design Catalogue</div>
+      <div class="nav-links">
+        <a href="#typography" class="nav-link">Typography</a>
+        <a href="#colors" class="nav-link">Colors</a>
+        <a href="#shapes" class="nav-link">3D Shapes</a>
+        <a href="#glass" class="nav-link">Glass</a>
+        <a href="#shadows" class="nav-link">Shadows</a>
+        <a href="#animations" class="nav-link">Animations</a>
+        <a href="#gradients" class="nav-link">Gradients</a>
+        <a href="#textures" class="nav-link">Textures</a>
+        <a href="#easing" class="nav-link">Easing</a>
+        <a href="#buttons" class="nav-link">Buttons</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Design Possibilities</h1>
+      <p>A visual catalogue of typography, colors, effects, and components. Browse, compare, and find inspiration for your next project.</p>
+    </header>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Typography</h2>
+        <p class="section-desc">Distinctive fonts that stand out from the Inter/Roboto crowd. All available free from Google Fonts or Fontshare.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card font-preview">
+          <div class="font-sample font-space-grotesk">Space Grotesk</div>
+          <div class="font-alphabet font-space-grotesk">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Technical, geometric, modern · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-instrument-serif" style="font-style: italic;">Instrument Serif</div>
+          <div class="font-alphabet font-instrument-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Elegant, editorial · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-fraunces">Fraunces</div>
+          <div class="font-alphabet font-fraunces">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Quirky, friendly, old-style · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-bebas">BEBAS NEUE</div>
+          <div class="font-alphabet font-bebas">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Bold, impactful, display · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-playfair">Playfair Display</div>
+          <div class="font-alphabet font-playfair">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Classic, luxurious · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-syne">Syne</div>
+          <div class="font-alphabet font-syne">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Unique, artistic, futuristic · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-outfit">Outfit</div>
+          <div class="font-alphabet font-outfit">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Geometric, modern, versatile · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-crimson">Crimson Pro</div>
+          <div class="font-alphabet font-crimson">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Readable, elegant serif · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-jetbrains">JetBrains Mono</div>
+          <div class="font-alphabet font-jetbrains">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Code, technical, monospace · Google Fonts</div>
+        </div>
+        <div class="card font-preview">
+          <div class="font-sample font-dm-sans">DM Sans</div>
+          <div class="font-alphabet font-dm-sans">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+          <div class="card-meta" style="margin-top: 1rem;">Geometric, friendly, body text · Google Fonts</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR PALETTES -->
+    <section id="colors" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Color Palettes</h2>
+        <p class="section-desc">Monochromatic and themed palettes. Click any color to copy its hex value.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #fef3ed;" onclick="copyColor('#fef3ed')">50</div>
+            <div class="palette-color" style="background: #fbc6a8;" onclick="copyColor('#fbc6a8')">200</div>
+            <div class="palette-color" style="background: #f47238;" onclick="copyColor('#f47238')">400</div>
+            <div class="palette-color" style="background: #e23a08;" onclick="copyColor('#e23a08')">600</div>
+            <div class="palette-color" style="background: #791e10;" onclick="copyColor('#791e10')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Copper / Orange</div>
+            <div class="palette-desc">Warm, energetic, action-oriented</div>
+          </div>
+        </div>
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #e6fffa;" onclick="copyColor('#e6fffa')">50</div>
+            <div class="palette-color" style="background: #81e6d9;" onclick="copyColor('#81e6d9')">200</div>
+            <div class="palette-color" style="background: #38b2ac;" onclick="copyColor('#38b2ac')">400</div>
+            <div class="palette-color" style="background: #2c7a7b;" onclick="copyColor('#2c7a7b')">600</div>
+            <div class="palette-color" style="background: #1d4044;" onclick="copyColor('#1d4044')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Teal / Cyan</div>
+            <div class="palette-desc">Fresh, professional, trustworthy</div>
+          </div>
+        </div>
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #f5f3ff;" onclick="copyColor('#f5f3ff')">50</div>
+            <div class="palette-color" style="background: #c4b5fd;" onclick="copyColor('#c4b5fd')">200</div>
+            <div class="palette-color" style="background: #8b5cf6;" onclick="copyColor('#8b5cf6')">400</div>
+            <div class="palette-color" style="background: #6d28d9;" onclick="copyColor('#6d28d9')">600</div>
+            <div class="palette-color" style="background: #4c1d95;" onclick="copyColor('#4c1d95')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Violet / Purple</div>
+            <div class="palette-desc">Creative, premium, innovative</div>
+          </div>
+        </div>
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #ecfdf5;" onclick="copyColor('#ecfdf5')">50</div>
+            <div class="palette-color" style="background: #6ee7b7;" onclick="copyColor('#6ee7b7')">200</div>
+            <div class="palette-color" style="background: #34d399;" onclick="copyColor('#34d399')">400</div>
+            <div class="palette-color" style="background: #059669;" onclick="copyColor('#059669')">600</div>
+            <div class="palette-color" style="background: #064e3b;" onclick="copyColor('#064e3b')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Emerald / Green</div>
+            <div class="palette-desc">Natural, growth, success</div>
+          </div>
+        </div>
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #eff6ff;" onclick="copyColor('#eff6ff')">50</div>
+            <div class="palette-color" style="background: #93c5fd;" onclick="copyColor('#93c5fd')">200</div>
+            <div class="palette-color" style="background: #3b82f6;" onclick="copyColor('#3b82f6')">400</div>
+            <div class="palette-color" style="background: #2563eb;" onclick="copyColor('#2563eb')">600</div>
+            <div class="palette-color" style="background: #1e3a8a;" onclick="copyColor('#1e3a8a')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Blue</div>
+            <div class="palette-desc">Calm, reliable, corporate</div>
+          </div>
+        </div>
+        <div class="card palette-card">
+          <div class="palette-colors">
+            <div class="palette-color" style="background: #fef2f2;" onclick="copyColor('#fef2f2')">50</div>
+            <div class="palette-color" style="background: #fca5a5;" onclick="copyColor('#fca5a5')">200</div>
+            <div class="palette-color" style="background: #f87171;" onclick="copyColor('#f87171')">400</div>
+            <div class="palette-color" style="background: #dc2626;" onclick="copyColor('#dc2626')">600</div>
+            <div class="palette-color" style="background: #7f1d1d;" onclick="copyColor('#7f1d1d')">900</div>
+          </div>
+          <div class="palette-info">
+            <div class="palette-name">Red / Rose</div>
+            <div class="palette-desc">Bold, urgent, passionate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D SHAPES -->
+    <section id="shapes" class="section">
+      <div class="section-header">
+        <h2 class="section-title">3D Shapes</h2>
+        <p class="section-desc">Different shape options for 3D floating icons. All use the same clay/ceramic material technique.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-rounded"></div>
+            </div>
+          </div>
+          <div class="card-title">Rounded Square</div>
+          <div class="card-meta">border-radius: 28px</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-circle"></div>
+            </div>
+          </div>
+          <div class="card-title">Circle</div>
+          <div class="card-meta">border-radius: 50%</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-squircle"></div>
+            </div>
+          </div>
+          <div class="card-title">Squircle</div>
+          <div class="card-meta">border-radius: 35%</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-blob"></div>
+            </div>
+          </div>
+          <div class="card-title">Organic Blob</div>
+          <div class="card-meta">Animated border-radius</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-hexagon"></div>
+            </div>
+          </div>
+          <div class="card-title">Hexagon</div>
+          <div class="card-meta">clip-path: polygon</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-shield"></div>
+            </div>
+          </div>
+          <div class="card-title">Shield</div>
+          <div class="card-meta">clip-path: polygon</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview" style="width: 160px;">
+            <div class="shape-3d">
+              <div class="shape-base shape-pill"></div>
+            </div>
+          </div>
+          <div class="card-title">Pill / Capsule</div>
+          <div class="card-meta">border-radius: 60px</div>
+        </div>
+        <div class="card shape-card">
+          <div class="shape-preview">
+            <div class="shape-3d">
+              <div class="shape-base shape-diamond"></div>
+            </div>
+          </div>
+          <div class="card-title">Diamond</div>
+          <div class="card-meta">rotate(45deg)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLASS EFFECTS -->
+    <section id="glass" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Glass Morphism</h2>
+        <p class="section-desc">Different blur levels and tints for frosted glass effects.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-light">Light Glass</div>
+        </div>
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-medium">Medium Glass</div>
+        </div>
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-heavy">Heavy Frosted</div>
+        </div>
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-dark">Dark Glass</div>
+        </div>
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-tinted">Tinted Glass</div>
+        </div>
+        <div class="card glass-card">
+          <div class="glass-bg"></div>
+          <div class="glass-panel glass-frosted">Ultra Frosted</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHADOWS -->
+    <section id="shadows" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Shadow Styles</h2>
+        <p class="section-desc">From basic to dramatic - different shadow approaches for depth and dimension.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-basic"></div>
+          <div class="card-title">Basic</div>
+          <div class="card-meta">Single shadow layer</div>
+        </div>
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-soft"></div>
+          <div class="card-title">Soft</div>
+          <div class="card-meta">Large blur radius</div>
+        </div>
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-layered"></div>
+          <div class="card-title">Layered</div>
+          <div class="card-meta">5 stacked shadows</div>
+        </div>
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-glow"></div>
+          <div class="card-title">Glow</div>
+          <div class="card-meta">Color + ambient light</div>
+        </div>
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-inner"></div>
+          <div class="card-title">Inner + Outer</div>
+          <div class="card-meta">Clay/material feel</div>
+        </div>
+        <div class="card shadow-card">
+          <div class="shadow-demo shadow-dramatic"></div>
+          <div class="card-title">Dramatic</div>
+          <div class="card-meta">Deep + glow + inner</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANIMATIONS -->
+    <section id="animations" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Animation Types</h2>
+        <p class="section-desc">Common animation patterns for UI elements.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card anim-card">
+          <div class="anim-demo anim-float"></div>
+          <div class="card-title">Float</div>
+          <div class="card-meta">Gentle up/down motion</div>
+        </div>
+        <div class="card anim-card">
+          <div class="anim-demo anim-pulse"></div>
+          <div class="card-title">Pulse</div>
+          <div class="card-meta">Scale + opacity</div>
+        </div>
+        <div class="card anim-card">
+          <div class="anim-demo anim-spin"></div>
+          <div class="card-title">Spin</div>
+          <div class="card-meta">Continuous rotation</div>
+        </div>
+        <div class="card anim-card">
+          <div class="anim-demo anim-bounce"></div>
+          <div class="card-title">Bounce</div>
+          <div class="card-meta">Energetic jump</div>
+        </div>
+        <div class="card anim-card">
+          <div class="anim-demo anim-shake"></div>
+          <div class="card-title">Shake</div>
+          <div class="card-meta">Attention/error state</div>
+        </div>
+        <div class="card anim-card">
+          <div class="anim-demo anim-morph"></div>
+          <div class="card-title">Morph</div>
+          <div class="card-meta">Shape transformation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADIENTS -->
+    <section id="gradients" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Gradient Styles</h2>
+        <p class="section-desc">Background gradients for atmosphere and visual interest.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card gradient-card grad-sunset">
+          <div class="gradient-info">Sunset</div>
+        </div>
+        <div class="card gradient-card grad-ocean">
+          <div class="gradient-info">Ocean</div>
+        </div>
+        <div class="card gradient-card grad-forest">
+          <div class="gradient-info">Forest</div>
+        </div>
+        <div class="card gradient-card grad-midnight">
+          <div class="gradient-info">Midnight</div>
+        </div>
+        <div class="card gradient-card grad-fire">
+          <div class="gradient-info">Fire</div>
+        </div>
+        <div class="card gradient-card grad-cool">
+          <div class="gradient-info">Cool Pastel</div>
+        </div>
+        <div class="card gradient-card grad-aurora">
+          <div class="gradient-info">Aurora</div>
+        </div>
+        <div class="card gradient-card grad-noir">
+          <div class="gradient-info">Noir</div>
+        </div>
+        <div class="card gradient-card grad-mesh">
+          <div class="gradient-info">Mesh (Multi-radial)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTURES -->
+    <section id="textures" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Background Textures</h2>
+        <p class="section-desc">Subtle patterns to add depth beyond flat colors.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card texture-card texture-noise">
+          <div class="gradient-info">Noise / Grain</div>
+        </div>
+        <div class="card texture-card texture-dots">
+          <div class="gradient-info">Dot Pattern</div>
+        </div>
+        <div class="card texture-card texture-grid">
+          <div class="gradient-info">Grid Lines</div>
+        </div>
+        <div class="card texture-card texture-diagonal">
+          <div class="gradient-info">Diagonal Stripes</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EASING FUNCTIONS -->
+    <section id="easing" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Easing Functions</h2>
+        <p class="section-desc">Hover over each card to see the animation curve in action.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card easing-card ease-linear">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Linear</div>
+          <div class="easing-code">linear</div>
+        </div>
+        <div class="card easing-card ease-ease">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Ease (Default)</div>
+          <div class="easing-code">ease</div>
+        </div>
+        <div class="card easing-card ease-expo">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Ease Out Expo</div>
+          <div class="easing-code">cubic-bezier(0.16, 1, 0.3, 1)</div>
+        </div>
+        <div class="card easing-card ease-back">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Ease Out Back</div>
+          <div class="easing-code">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+        </div>
+        <div class="card easing-card ease-elastic">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Elastic</div>
+          <div class="easing-code">cubic-bezier(0.68, -0.55, 0.265, 1.55)</div>
+        </div>
+        <div class="card easing-card ease-circ">
+          <div class="easing-demo"><div class="easing-ball"></div></div>
+          <div class="card-title">Ease In Out Circ</div>
+          <div class="easing-code">cubic-bezier(0.85, 0, 0.15, 1)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Button Styles</h2>
+        <p class="section-desc">Different button treatments for various contexts.</p>
+      </div>
+      <div class="card">
+        <div class="button-grid">
+          <button class="btn btn-solid">Solid</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-gradient">Gradient</button>
+          <button class="btn btn-glass">Glass</button>
+          <button class="btn btn-3d">3D Press</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <p>Design Catalogue · Part of the Glass UI Demo project</p>
+    <p style="margin-top: 0.5rem;"><a href="index.html" style="color: var(--accent);">← Back to demos</a></p>
+  </footer>
+
+  <script>
+    function copyColor(hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        // Quick feedback
+        const el = event.target;
+        const original = el.textContent;
+        el.textContent = '✓';
+        setTimeout(() => el.textContent = original, 800);
+      });
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

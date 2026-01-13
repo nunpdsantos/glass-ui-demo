@@ -378,6 +378,16 @@
       pointer-events: none;
     }
 
+    .with-side-reflection::after {
+      content: '';
+      position: absolute;
+      top: 15%; right: 8%;
+      width: 15%; height: 60%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
     /* Glass background for demos */
     .glass-bg { position: relative; }
     .glass-bg::before {
@@ -1178,6 +1188,11 @@
             <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay with-reflection shape-rounded"></div></div></div>
             <div class="card-title">+ Reflection</div>
             <div class="card-meta">Top highlight</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay with-reflection with-side-reflection shape-rounded"></div></div></div>
+            <div class="card-title">Top + Side</div>
+            <div class="card-meta">Multiple reflections</div>
           </div>
           <div class="card shape-card glass-bg">
             <div class="shape-preview"><div class="shape-3d"><div class="shape-base glass-orange shape-rounded"></div></div></div>

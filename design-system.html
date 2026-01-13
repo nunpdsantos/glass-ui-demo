@@ -6,7 +6,7 @@
   <title>Design System | Complete Visual Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Syne:wght@400;600;700&family=Outfit:wght@400;500;600&family=Crimson+Pro:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Syne:wght@400;600;700&family=Outfit:wght@400;500;600&family=Crimson+Pro:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Archivo+Black&family=Dela+Gothic+One&family=Rubik+Mono+One&family=Climate+Crisis&family=Pixelify+Sans&family=Silkscreen&family=Press+Start+2P&family=Orbitron:wght@400;700&family=Righteous&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -241,6 +241,16 @@
     .font-outfit { font-family: 'Outfit', sans-serif; }
     .font-crimson { font-family: 'Crimson Pro', serif; }
     .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+    .font-archivo { font-family: 'Archivo Black', sans-serif; }
+    .font-dela { font-family: 'Dela Gothic One', cursive; }
+    .font-rubik-mono { font-family: 'Rubik Mono One', sans-serif; }
+    .font-climate { font-family: 'Climate Crisis', cursive; }
+    .font-pixelify { font-family: 'Pixelify Sans', cursive; }
+    .font-silkscreen { font-family: 'Silkscreen', cursive; }
+    .font-press-start { font-family: 'Press Start 2P', cursive; }
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .font-righteous { font-family: 'Righteous', cursive; }
+    .font-unbounded { font-family: 'Unbounded', cursive; }
 
     /* ========== COLORS ========== */
     .palette-card { padding: 0; overflow: hidden; }
@@ -558,6 +568,153 @@
     .btn-pill { border-radius: 50px; }
     .btn-icon { width: 40px; height: 40px; padding: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
 
+    /* ========== CARDS ========== */
+    .demo-card-style {
+      padding: 1.5rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-card-style .card-title { margin-bottom: 0.5rem; }
+    .demo-card-style .card-text { font-size: 0.85rem; color: var(--text-secondary); flex: 1; }
+
+    .card-minimal { background: transparent; border: none; padding: 1rem 0; }
+    .card-bordered { border: 2px solid var(--border); }
+    .card-gradient-bg { background: linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(139,92,246,0.15) 100%); }
+    .card-glass-style { backdrop-filter: blur(20px); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+    .card-elevated { box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05); }
+    .card-outline-accent { border: 2px solid var(--accent); background: transparent; }
+    .card-top-border { border-top: 3px solid var(--accent); border-radius: 0 0 12px 12px; }
+    .card-left-border { border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; }
+    .card-glow { box-shadow: 0 0 30px rgba(249,115,22,0.3), 0 15px 30px rgba(0,0,0,0.2); }
+
+    /* ========== NEON STYLES ========== */
+    .neon-container { background: #0a0a0f; padding: 2rem; border-radius: 12px; }
+
+    .neon-text-cyan { color: #0ff; text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
+    .neon-text-pink { color: #f0f; text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f; }
+    .neon-text-green { color: #0f0; text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 40px #0f0; }
+    .neon-text-orange { color: #f90; text-shadow: 0 0 10px #f90, 0 0 20px #f90, 0 0 40px #f90; }
+    .neon-text-purple { color: #a0f; text-shadow: 0 0 10px #a0f, 0 0 20px #a0f, 0 0 40px #a0f; }
+    .neon-text-red { color: #f00; text-shadow: 0 0 10px #f00, 0 0 20px #f00, 0 0 40px #f00; }
+    .neon-text-white { color: #fff; text-shadow: 0 0 10px #fff, 0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.6); }
+
+    .neon-box {
+      width: 80px; height: 80px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .neon-box-cyan { border: 2px solid #0ff; box-shadow: 0 0 15px #0ff, inset 0 0 15px rgba(0,255,255,0.1); }
+    .neon-box-pink { border: 2px solid #f0f; box-shadow: 0 0 15px #f0f, inset 0 0 15px rgba(255,0,255,0.1); }
+    .neon-box-green { border: 2px solid #0f0; box-shadow: 0 0 15px #0f0, inset 0 0 15px rgba(0,255,0,0.1); }
+    .neon-box-gradient {
+      border: 2px solid transparent;
+      background: linear-gradient(#0a0a0f, #0a0a0f) padding-box, linear-gradient(135deg, #0ff, #f0f) border-box;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3), 0 0 20px rgba(255,0,255,0.3);
+    }
+    .neon-box-pulse { animation: neonPulse 2s ease-in-out infinite; }
+    @keyframes neonPulse {
+      0%, 100% { box-shadow: 0 0 15px #0ff, inset 0 0 15px rgba(0,255,255,0.1); }
+      50% { box-shadow: 0 0 30px #0ff, 0 0 60px #0ff, inset 0 0 30px rgba(0,255,255,0.2); }
+    }
+
+    .neon-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #0ff, transparent);
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .neon-circle {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      border: 2px solid #0ff;
+      box-shadow: 0 0 20px #0ff, 0 0 40px rgba(0,255,255,0.5), inset 0 0 20px rgba(0,255,255,0.1);
+    }
+
+    /* ========== BRUTALIST STYLES ========== */
+    .brutal-container { background: #fff; color: #000; padding: 1.5rem; border-radius: 0; }
+
+    .brutal-box {
+      background: #fff;
+      color: #000;
+      border: 3px solid #000;
+      padding: 1.5rem;
+    }
+    .brutal-box-shadow { box-shadow: 8px 8px 0 #000; }
+    .brutal-box-red { background: #ff0000; color: #fff; border-color: #000; }
+    .brutal-box-yellow { background: #ffff00; color: #000; border-color: #000; }
+    .brutal-box-blue { background: #0000ff; color: #fff; border-color: #000; }
+    .brutal-box-offset { transform: rotate(-2deg); }
+    .brutal-box-thick { border-width: 6px; }
+
+    .brutal-text { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
+    .brutal-text-outline {
+      color: transparent;
+      -webkit-text-stroke: 2px #000;
+    }
+    .brutal-text-shadow { text-shadow: 4px 4px 0 #000; }
+
+    .brutal-btn {
+      background: #fff;
+      color: #000;
+      border: 3px solid #000;
+      padding: 0.75rem 1.5rem;
+      font-family: 'Archivo Black', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+    .brutal-btn:hover { background: #000; color: #fff; }
+    .brutal-btn-shadow { box-shadow: 4px 4px 0 #000; }
+    .brutal-btn-shadow:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+
+    /* ========== NEUMORPHISM ========== */
+    .neu-container { background: #e0e5ec; padding: 2rem; border-radius: 12px; }
+
+    .neu-box {
+      width: 100px; height: 100px;
+      border-radius: 20px;
+      background: #e0e5ec;
+    }
+    .neu-raised {
+      box-shadow: 8px 8px 16px #b8bcc2, -8px -8px 16px #ffffff;
+    }
+    .neu-pressed {
+      box-shadow: inset 8px 8px 16px #b8bcc2, inset -8px -8px 16px #ffffff;
+    }
+    .neu-flat {
+      box-shadow: 6px 6px 12px #b8bcc2, -6px -6px 12px #ffffff, inset 1px 1px 2px #ffffff, inset -1px -1px 2px #b8bcc2;
+    }
+    .neu-circle { border-radius: 50%; }
+
+    .neu-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background: #e0e5ec;
+      color: #666;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 6px 6px 12px #b8bcc2, -6px -6px 12px #ffffff;
+      transition: all 0.2s ease;
+    }
+    .neu-btn:hover {
+      box-shadow: 4px 4px 8px #b8bcc2, -4px -4px 8px #ffffff;
+    }
+    .neu-btn:active {
+      box-shadow: inset 4px 4px 8px #b8bcc2, inset -4px -4px 8px #ffffff;
+    }
+
+    /* Dark Neumorphism */
+    .neu-dark-container { background: #1a1a2e; padding: 2rem; border-radius: 12px; }
+    .neu-dark-box {
+      width: 100px; height: 100px;
+      border-radius: 20px;
+      background: #1a1a2e;
+      box-shadow: 8px 8px 16px #0f0f1a, -8px -8px 16px #252542;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -608,6 +765,14 @@
     <div class="nav-group">
       <div class="nav-group-title">Components</div>
       <a href="#buttons" class="nav-link">Buttons</a>
+      <a href="#cards" class="nav-link">Cards</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Styles</div>
+      <a href="#neon" class="nav-link">Neon</a>
+      <a href="#brutalist" class="nav-link">Brutalist</a>
+      <a href="#neumorphism" class="nav-link">Neumorphism</a>
     </div>
 
     <div class="nav-group" style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border);">
@@ -705,26 +870,13 @@
           <h2 class="section-title">Typography</h2>
           <p class="section-desc">Distinctive fonts that stand out. All free from Google Fonts.</p>
         </div>
+
+        <div class="card-label" style="margin: 1.5rem 0 0.75rem; color: var(--text-muted);">ELEGANT & EDITORIAL</div>
         <div class="grid-2">
-          <div class="card font-preview">
-            <div class="font-sample font-space-grotesk">Space Grotesk</div>
-            <div class="font-alphabet font-space-grotesk">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-            <div class="card-meta" style="margin-top: 0.75rem;">Technical, geometric</div>
-          </div>
           <div class="card font-preview">
             <div class="font-sample font-instrument-serif" style="font-style: italic;">Instrument Serif</div>
             <div class="font-alphabet font-instrument-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
             <div class="card-meta" style="margin-top: 0.75rem;">Elegant, editorial</div>
-          </div>
-          <div class="card font-preview">
-            <div class="font-sample font-fraunces">Fraunces</div>
-            <div class="font-alphabet font-fraunces">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-            <div class="card-meta" style="margin-top: 0.75rem;">Quirky, friendly</div>
-          </div>
-          <div class="card font-preview">
-            <div class="font-sample font-bebas">BEBAS NEUE</div>
-            <div class="font-alphabet font-bebas">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-            <div class="card-meta" style="margin-top: 0.75rem;">Bold, impactful</div>
           </div>
           <div class="card font-preview">
             <div class="font-sample font-playfair">Playfair Display</div>
@@ -732,9 +884,110 @@
             <div class="card-meta" style="margin-top: 0.75rem;">Classic, luxurious</div>
           </div>
           <div class="card font-preview">
+            <div class="font-sample font-fraunces">Fraunces</div>
+            <div class="font-alphabet font-fraunces">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Quirky, friendly</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-crimson">Crimson Pro</div>
+            <div class="font-alphabet font-crimson">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Readable, elegant serif</div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">MODERN & GEOMETRIC</div>
+        <div class="grid-2">
+          <div class="card font-preview">
+            <div class="font-sample font-space-grotesk">Space Grotesk</div>
+            <div class="font-alphabet font-space-grotesk">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Technical, geometric</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-outfit">Outfit</div>
+            <div class="font-alphabet font-outfit">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Clean, versatile</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-dm-sans">DM Sans</div>
+            <div class="font-alphabet font-dm-sans">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Geometric, friendly</div>
+          </div>
+          <div class="card font-preview">
             <div class="font-sample font-syne">Syne</div>
             <div class="font-alphabet font-syne">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
             <div class="card-meta" style="margin-top: 0.75rem;">Unique, artistic</div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">BOLD & IMPACTFUL</div>
+        <div class="grid-2">
+          <div class="card font-preview">
+            <div class="font-sample font-bebas">BEBAS NEUE</div>
+            <div class="font-alphabet font-bebas">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Bold, condensed</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-archivo">Archivo Black</div>
+            <div class="font-alphabet font-archivo">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Heavy, powerful</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-dela" style="font-size: 1.5rem;">Dela Gothic One</div>
+            <div class="font-alphabet font-dela">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Japanese-inspired bold</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-unbounded">Unbounded</div>
+            <div class="font-alphabet font-unbounded">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Rounded, modern</div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">FUTURISTIC & SCI-FI</div>
+        <div class="grid-2">
+          <div class="card font-preview">
+            <div class="font-sample font-orbitron">Orbitron</div>
+            <div class="font-alphabet font-orbitron">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Space-age, tech</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-righteous">Righteous</div>
+            <div class="font-alphabet font-righteous">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Retro-futuristic</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-climate" style="font-size: 1.4rem;">Climate Crisis</div>
+            <div class="font-alphabet font-climate" style="font-size: 0.7rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Variable, animated</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-rubik-mono" style="font-size: 1.3rem;">Rubik Mono</div>
+            <div class="font-alphabet font-rubik-mono" style="font-size: 0.65rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Monospace display</div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">PIXEL & RETRO</div>
+        <div class="grid-2">
+          <div class="card font-preview">
+            <div class="font-sample font-pixelify">Pixelify Sans</div>
+            <div class="font-alphabet font-pixelify">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Modern pixel</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-silkscreen" style="font-size: 1.5rem;">Silkscreen</div>
+            <div class="font-alphabet font-silkscreen">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Classic pixel</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-press-start" style="font-size: 1rem;">Press Start 2P</div>
+            <div class="font-alphabet font-press-start" style="font-size: 0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">8-bit gaming</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-jetbrains">JetBrains Mono</div>
+            <div class="font-alphabet font-jetbrains">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Code, monospace</div>
           </div>
         </div>
       </section>
@@ -1052,6 +1305,173 @@
             <button class="btn btn-icon btn-solid">+</button>
             <button class="btn btn-icon btn-ghost">X</button>
             <button class="btn btn-icon btn-outline" style="border-radius: 50%;">?</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARDS -->
+      <section id="cards" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Card Styles</h2>
+          <p class="section-desc">Different card treatments for various contexts.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card demo-card-style">
+            <div class="card-title">Default Card</div>
+            <div class="card-text">Standard card with subtle background and border.</div>
+          </div>
+          <div class="card demo-card-style card-bordered">
+            <div class="card-title">Bordered</div>
+            <div class="card-text">Stronger border for more definition.</div>
+          </div>
+          <div class="card demo-card-style card-gradient-bg">
+            <div class="card-title">Gradient Background</div>
+            <div class="card-text">Subtle gradient for visual interest.</div>
+          </div>
+          <div class="card demo-card-style card-glass-style">
+            <div class="card-title">Glass Card</div>
+            <div class="card-text">Frosted glass effect with blur.</div>
+          </div>
+          <div class="card demo-card-style card-elevated">
+            <div class="card-title">Elevated</div>
+            <div class="card-text">Strong shadow for floating effect.</div>
+          </div>
+          <div class="card demo-card-style card-outline-accent">
+            <div class="card-title">Accent Outline</div>
+            <div class="card-text">Colored border, transparent background.</div>
+          </div>
+          <div class="card demo-card-style card-top-border">
+            <div class="card-title">Top Border</div>
+            <div class="card-text">Accent color on top edge.</div>
+          </div>
+          <div class="card demo-card-style card-left-border">
+            <div class="card-title">Left Border</div>
+            <div class="card-text">Accent color on left edge.</div>
+          </div>
+          <div class="card demo-card-style card-glow">
+            <div class="card-title">Glowing</div>
+            <div class="card-text">Colored glow around the card.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEON -->
+      <section id="neon" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Neon Styles</h2>
+          <p class="section-desc">Glowing neon effects for dark interfaces.</p>
+        </div>
+
+        <div class="card-label" style="margin: 1rem 0 0.75rem; color: var(--text-muted);">NEON TEXT</div>
+        <div class="card neon-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+            <span class="neon-text-cyan" style="font-size: 1.5rem; font-weight: 600;">CYAN</span>
+            <span class="neon-text-pink" style="font-size: 1.5rem; font-weight: 600;">PINK</span>
+            <span class="neon-text-green" style="font-size: 1.5rem; font-weight: 600;">GREEN</span>
+            <span class="neon-text-orange" style="font-size: 1.5rem; font-weight: 600;">ORANGE</span>
+            <span class="neon-text-purple" style="font-size: 1.5rem; font-weight: 600;">PURPLE</span>
+            <span class="neon-text-red" style="font-size: 1.5rem; font-weight: 600;">RED</span>
+            <span class="neon-text-white" style="font-size: 1.5rem; font-weight: 600;">WHITE</span>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">NEON SHAPES</div>
+        <div class="card neon-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;">
+            <div class="neon-box neon-box-cyan"></div>
+            <div class="neon-box neon-box-pink"></div>
+            <div class="neon-box neon-box-green"></div>
+            <div class="neon-box neon-box-gradient"></div>
+            <div class="neon-box neon-box-cyan neon-box-pulse"></div>
+            <div class="neon-circle"></div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">NEON BUTTONS</div>
+        <div class="card neon-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <button class="btn btn-neon">Cyan Neon</button>
+            <button class="btn btn-neon-pink">Pink Neon</button>
+            <button class="btn" style="background: transparent; color: #0f0; border: 2px solid #0f0; box-shadow: 0 0 10px #0f0;">Green Neon</button>
+            <button class="btn" style="background: transparent; color: #f90; border: 2px solid #f90; box-shadow: 0 0 10px #f90;">Orange Neon</button>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">NEON LINES</div>
+        <div class="card neon-container">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="neon-line"></div>
+            <div class="neon-line" style="background: linear-gradient(90deg, transparent, #f0f, transparent); box-shadow: 0 0 10px #f0f;"></div>
+            <div class="neon-line" style="background: linear-gradient(90deg, #0ff, #f0f); box-shadow: 0 0 10px #0ff, 0 0 10px #f0f;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRUTALIST -->
+      <section id="brutalist" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Brutalist Styles</h2>
+          <p class="section-desc">Raw, bold, unapologetic design.</p>
+        </div>
+
+        <div class="card-label" style="margin: 1rem 0 0.75rem; color: var(--text-muted);">BRUTALIST BOXES</div>
+        <div class="card brutal-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+            <div class="brutal-box brutal-box-shadow" style="width: 100px; height: 100px;"></div>
+            <div class="brutal-box brutal-box-shadow brutal-box-red" style="width: 100px; height: 100px;"></div>
+            <div class="brutal-box brutal-box-shadow brutal-box-yellow" style="width: 100px; height: 100px;"></div>
+            <div class="brutal-box brutal-box-shadow brutal-box-blue" style="width: 100px; height: 100px;"></div>
+            <div class="brutal-box brutal-box-shadow brutal-box-offset" style="width: 100px; height: 100px;"></div>
+            <div class="brutal-box brutal-box-thick" style="width: 100px; height: 100px; box-shadow: 12px 12px 0 #000;"></div>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">BRUTALIST TEXT</div>
+        <div class="card brutal-container">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <span class="brutal-text" style="font-size: 2rem;">BOLD BRUTAL</span>
+            <span class="brutal-text brutal-text-outline" style="font-size: 2rem;">OUTLINE TEXT</span>
+            <span class="brutal-text brutal-text-shadow" style="font-size: 2rem; color: #ff0000;">SHADOW TEXT</span>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">BRUTALIST BUTTONS</div>
+        <div class="card brutal-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <button class="brutal-btn">Basic</button>
+            <button class="brutal-btn brutal-btn-shadow">Shadow</button>
+            <button class="brutal-btn" style="background: #ff0000; color: #fff;">Red</button>
+            <button class="brutal-btn" style="background: #ffff00;">Yellow</button>
+            <button class="brutal-btn" style="background: #0000ff; color: #fff;">Blue</button>
+            <button class="brutal-btn" style="background: #000; color: #fff;">Inverted</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEUMORPHISM -->
+      <section id="neumorphism" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Neumorphism</h2>
+          <p class="section-desc">Soft UI with extruded/pressed effects.</p>
+        </div>
+
+        <div class="card-label" style="margin: 1rem 0 0.75rem; color: var(--text-muted);">LIGHT NEUMORPHISM</div>
+        <div class="card neu-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+            <div class="neu-box neu-raised"></div>
+            <div class="neu-box neu-pressed"></div>
+            <div class="neu-box neu-flat"></div>
+            <div class="neu-box neu-raised neu-circle"></div>
+            <button class="neu-btn">Neumorphic Button</button>
+          </div>
+        </div>
+
+        <div class="card-label" style="margin: 2rem 0 0.75rem; color: var(--text-muted);">DARK NEUMORPHISM</div>
+        <div class="card neu-dark-container">
+          <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+            <div class="neu-dark-box"></div>
+            <div class="neu-dark-box" style="border-radius: 50%;"></div>
+            <div class="neu-dark-box" style="box-shadow: inset 8px 8px 16px #0f0f1a, inset -8px -8px 16px #252542;"></div>
           </div>
         </div>
       </section>

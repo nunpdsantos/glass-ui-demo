@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Catalogue V2 | Extended Visual Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Syne:wght@400;600;700&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: #111114;
+      --bg-card-hover: #18181c;
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.35);
+      --accent: #f97316;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 100px;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Card Styles */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========== BACKGROUND EFFECTS SECTION ========== */
+    .bg-demo {
+      position: relative;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .bg-demo-inner {
+      position: absolute;
+      inset: 0;
+      background: #0a0a0f;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: orbFloat 20s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 300px; height: 300px;
+      background: #f97316;
+      top: -100px; left: -50px;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 250px; height: 250px;
+      background: #8b5cf6;
+      top: 50%; right: -80px;
+      animation-delay: -5s;
+    }
+    .orb-3 {
+      width: 200px; height: 200px;
+      background: #06b6d4;
+      bottom: -50px; left: 30%;
+      animation-delay: -10s;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.1); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(20px, 20px) scale(1.05); }
+    }
+
+    /* Mouse glow follower */
+    .mouse-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .bg-demo:hover .mouse-glow {
+      opacity: 1;
+    }
+
+    /* Different background configs */
+    .bg-config-1 .orb { filter: blur(80px); opacity: 0.5; }
+    .bg-config-2 .orb { filter: blur(40px); opacity: 0.7; }
+    .bg-config-3 .orb { filter: blur(100px); opacity: 0.4; }
+
+    .bg-config-controls {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+
+    .bg-control-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bg-control-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .bg-control-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ========== EXTENDED BUTTONS SECTION ========== */
+    .button-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    /* Solid variants */
+    .btn-solid { background: var(--accent); color: white; }
+    .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4); }
+
+    .btn-solid-dark { background: #1f2937; color: white; }
+    .btn-solid-dark:hover { background: #374151; }
+
+    .btn-solid-light { background: #f3f4f6; color: #1f2937; }
+    .btn-solid-light:hover { background: white; }
+
+    /* Outline variants */
+    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: white; }
+
+    .btn-outline-light { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* Ghost */
+    .btn-ghost { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+    /* Gradient variants */
+    .btn-gradient { background: linear-gradient(135deg, #f97316, #fb923c); color: white; }
+    .btn-gradient:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4); }
+
+    .btn-gradient-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; }
+    .btn-gradient-purple:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4); }
+
+    .btn-gradient-teal { background: linear-gradient(135deg, #14b8a6, #2dd4bf); color: white; }
+    .btn-gradient-teal:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4); }
+
+    .btn-gradient-multi {
+      background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
+      background-size: 200% 200%;
+      color: white;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    /* Glass */
+    .btn-glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .btn-glass:hover { background: rgba(255, 255, 255, 0.2); }
+
+    .btn-glass-dark { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .btn-glass-dark:hover { background: rgba(0, 0, 0, 0.5); }
+
+    /* 3D Press */
+    .btn-3d { background: linear-gradient(180deg, #fb923c 0%, #f97316 100%); color: white; box-shadow: 0 4px 0 #c2410c; }
+    .btn-3d:hover { transform: translateY(2px); box-shadow: 0 2px 0 #c2410c; }
+
+    .btn-3d-green { background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%); color: white; box-shadow: 0 4px 0 #15803d; }
+    .btn-3d-green:hover { transform: translateY(2px); box-shadow: 0 2px 0 #15803d; }
+
+    /* Neon/Glow */
+    .btn-neon {
+      background: transparent;
+      color: #0ff;
+      border: 2px solid #0ff;
+      box-shadow: 0 0 10px #0ff, inset 0 0 10px rgba(0, 255, 255, 0.1);
+    }
+    .btn-neon:hover {
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, inset 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .btn-neon-pink {
+      background: transparent;
+      color: #f0f;
+      border: 2px solid #f0f;
+      box-shadow: 0 0 10px #f0f, inset 0 0 10px rgba(255, 0, 255, 0.1);
+    }
+    .btn-neon-pink:hover {
+      background: rgba(255, 0, 255, 0.1);
+      box-shadow: 0 0 20px #f0f, 0 0 40px #f0f, inset 0 0 20px rgba(255, 0, 255, 0.2);
+    }
+
+    /* Pill shapes */
+    .btn-pill { border-radius: 50px; }
+
+    /* Icon button */
+    .btn-icon {
+      width: 48px; height: 48px;
+      padding: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .btn-icon-circle { border-radius: 50%; }
+
+    /* Text link style */
+    .btn-link {
+      background: none;
+      color: var(--accent);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid transparent;
+    }
+    .btn-link:hover { border-bottom-color: var(--accent); }
+
+    /* Brutalist */
+    .btn-brutal {
+      background: #fff;
+      color: #000;
+      border: 3px solid #000;
+      border-radius: 0;
+      box-shadow: 4px 4px 0 #000;
+    }
+    .btn-brutal:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    /* Soft/Rounded */
+    .btn-soft {
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--accent);
+      border-radius: 12px;
+    }
+    .btn-soft:hover { background: rgba(249, 115, 22, 0.25); }
+
+    /* Loading state */
+    .btn-loading {
+      position: relative;
+      color: transparent !important;
+    }
+    .btn-loading::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ========== 3D SHAPES EXTENDED ========== */
+    .shape-card-extended {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 220px;
+    }
+
+    .shape-preview-ext {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 1rem;
+      perspective: 600px;
+    }
+
+    .shape-3d-ext {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
+      50% { transform: translateY(-8px) rotateX(-3deg) rotateY(5deg); }
+    }
+
+    /* Base shape styles */
+    .shape-base-ext {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+    }
+
+    /* MATERIAL VARIATIONS */
+
+    /* Opaque Clay/Ceramic */
+    .material-clay {
+      background: linear-gradient(155deg, #c9a87c 0%, #b8956d 25%, #a67c52 50%, #8b5e34 75%, #6d4422 100%);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(180, 130, 80, 0.2),
+        inset 0 3px 8px rgba(255, 255, 255, 0.35),
+        inset 0 -5px 15px rgba(60, 30, 10, 0.35),
+        inset 4px 0 8px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Glass Transparent */
+    .material-glass {
+      background: linear-gradient(155deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Glass with thickness */
+    .material-glass-thick {
+      background: linear-gradient(155deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.15) 30%,
+        rgba(200, 220, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(30px);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.1),
+        inset 3px 0 6px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Frosted glass */
+    .material-frosted {
+      background: linear-gradient(155deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 100%);
+      backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Matte/Flat */
+    .material-matte {
+      background: linear-gradient(155deg, #6b7280 0%, #4b5563 50%, #374151 100%);
+      box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Glossy/Shiny */
+    .material-glossy {
+      background: linear-gradient(155deg,
+        #f0f0f0 0%,
+        #d0d0d0 20%,
+        #a0a0a0 50%,
+        #808080 80%,
+        #606060 100%);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(255, 255, 255, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Metallic */
+    .material-metal {
+      background: linear-gradient(155deg,
+        #e8e8e8 0%,
+        #b8b8b8 15%,
+        #8a8a8a 30%,
+        #a0a0a0 50%,
+        #707070 70%,
+        #909090 85%,
+        #606060 100%);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 3px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Neon glow */
+    .material-neon {
+      background: linear-gradient(155deg, #0ff 0%, #0aa 50%, #066 100%);
+      box-shadow:
+        0 0 30px rgba(0, 255, 255, 0.5),
+        0 0 60px rgba(0, 255, 255, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    }
+
+    /* REFLECTION VARIATIONS */
+
+    /* With top reflection */
+    .with-reflection::before {
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: 10%;
+      right: 10%;
+      height: 40%;
+      background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%);
+      border-radius: 20px 20px 50% 50%;
+      pointer-events: none;
+    }
+
+    /* Strong reflection */
+    .reflection-strong::before {
+      content: '';
+      position: absolute;
+      top: 3%;
+      left: 8%;
+      right: 8%;
+      height: 45%;
+      background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        transparent 100%);
+      border-radius: 20px 20px 50% 50%;
+      pointer-events: none;
+    }
+
+    /* Side reflection */
+    .reflection-side::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: 20%;
+      height: 70%;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* LIGHTING VARIATIONS */
+
+    /* Top-left light */
+    .light-top-left {
+      background: linear-gradient(135deg, #d4a574 0%, #a67c52 40%, #6d4422 100%);
+    }
+
+    /* Top-right light */
+    .light-top-right {
+      background: linear-gradient(225deg, #d4a574 0%, #a67c52 40%, #6d4422 100%);
+    }
+
+    /* Bottom light */
+    .light-bottom {
+      background: linear-gradient(0deg, #d4a574 0%, #a67c52 40%, #6d4422 100%);
+    }
+
+    /* Multi-point lighting */
+    .light-multi {
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 30%),
+        radial-gradient(ellipse at 30% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 30%),
+        linear-gradient(155deg, #c9a87c 0%, #8b5e34 50%, #6d4422 100%);
+    }
+
+    /* Rim lighting */
+    .light-rim {
+      background: linear-gradient(155deg, #8b5e34 0%, #6d4422 100%);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 2px 0 8px rgba(255, 255, 255, 0.3),
+        inset -2px 0 8px rgba(255, 255, 255, 0.2),
+        inset 0 2px 8px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    /* COLORED GLASS VARIATIONS */
+    .glass-orange {
+      background: linear-gradient(155deg,
+        rgba(249, 115, 22, 0.4) 0%,
+        rgba(249, 115, 22, 0.2) 50%,
+        rgba(249, 115, 22, 0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+    }
+
+    .glass-purple {
+      background: linear-gradient(155deg,
+        rgba(139, 92, 246, 0.4) 0%,
+        rgba(139, 92, 246, 0.2) 50%,
+        rgba(139, 92, 246, 0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+    }
+
+    .glass-teal {
+      background: linear-gradient(155deg,
+        rgba(20, 184, 166, 0.4) 0%,
+        rgba(20, 184, 166, 0.2) 50%,
+        rgba(20, 184, 166, 0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
+    }
+
+    /* Background for glass demo */
+    .glass-bg-demo {
+      position: relative;
+    }
+
+    .glass-bg-demo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, #f97316 0%, #8b5cf6 50%, #06b6d4 100%);
+      border-radius: 16px;
+      z-index: -1;
+    }
+
+    /* Interactive background demo container */
+    .interactive-bg-section {
+      margin-bottom: 2rem;
+    }
+
+    .bg-label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      z-index: 10;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-title">Design Catalogue V2</div>
+      <div class="nav-links">
+        <a href="#backgrounds" class="nav-link">Backgrounds</a>
+        <a href="#buttons" class="nav-link">Buttons</a>
+        <a href="#materials" class="nav-link">Materials</a>
+        <a href="#reflections" class="nav-link">Reflections</a>
+        <a href="#lighting" class="nav-link">Lighting</a>
+        <a href="#colored-glass" class="nav-link">Colored Glass</a>
+        <a href="catalogue.html" class="nav-link">V1 Catalogue</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Extended Design Catalogue</h1>
+      <p>Interactive backgrounds, comprehensive button styles, and 3D shape variations with different materials, reflections, and lighting.</p>
+    </header>
+
+    <!-- INTERACTIVE BACKGROUNDS -->
+    <section id="backgrounds" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Interactive Backgrounds</h2>
+        <p class="section-desc">Floating gradient orbs that respond to mouse movement. Move your cursor around to see the glow follow.</p>
+      </div>
+
+      <div class="interactive-bg-section">
+        <div class="bg-demo" id="bgDemo1">
+          <div class="bg-demo-inner">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="mouse-glow" id="mouseGlow1"></div>
+          </div>
+          <div class="bg-label">3 Orbs + Mouse Glow</div>
+          <div class="bg-config-controls">
+            <button class="bg-control-btn active" onclick="setOrbCount(3)">3 Points</button>
+            <button class="bg-control-btn" onclick="setOrbCount(5)">5 Points</button>
+            <button class="bg-control-btn" onclick="toggleGlowSize('small')">Small Glow</button>
+            <button class="bg-control-btn" onclick="toggleGlowSize('large')">Large Glow</button>
+            <button class="bg-control-btn" onclick="toggleBlur('soft')">Soft Blur</button>
+            <button class="bg-control-btn" onclick="toggleBlur('sharp')">Sharp</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <div class="bg-demo" style="height: 200px;" id="bgDemo2">
+            <div class="bg-demo-inner">
+              <div class="orb" style="width: 200px; height: 200px; background: #f97316; top: -50px; left: 50%; filter: blur(50px);"></div>
+            </div>
+            <div class="mouse-glow" id="mouseGlow2"></div>
+          </div>
+          <div style="padding: 1rem;">
+            <div class="card-title">Single Point</div>
+            <div class="card-meta">One dominant color focus</div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <div class="bg-demo" style="height: 200px;" id="bgDemo3">
+            <div class="bg-demo-inner">
+              <div class="orb" style="width: 150px; height: 150px; background: #ec4899; top: 0; left: 0; filter: blur(40px);"></div>
+              <div class="orb" style="width: 150px; height: 150px; background: #8b5cf6; bottom: 0; right: 0; filter: blur(40px);"></div>
+            </div>
+            <div class="mouse-glow" id="mouseGlow3"></div>
+          </div>
+          <div style="padding: 1rem;">
+            <div class="card-title">Two Points</div>
+            <div class="card-meta">Complementary colors mixing</div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+          <div class="bg-demo" style="height: 200px;" id="bgDemo4">
+            <div class="bg-demo-inner">
+              <div class="orb" style="width: 120px; height: 120px; background: #f97316; top: -30px; left: 10%; filter: blur(40px); animation-delay: 0s;"></div>
+              <div class="orb" style="width: 100px; height: 100px; background: #8b5cf6; top: 30%; right: 10%; filter: blur(40px); animation-delay: -3s;"></div>
+              <div class="orb" style="width: 130px; height: 130px; background: #06b6d4; bottom: -30px; left: 30%; filter: blur(40px); animation-delay: -6s;"></div>
+              <div class="orb" style="width: 90px; height: 90px; background: #22c55e; bottom: 20%; right: 20%; filter: blur(40px); animation-delay: -9s;"></div>
+              <div class="orb" style="width: 110px; height: 110px; background: #ec4899; top: 50%; left: -20px; filter: blur(40px); animation-delay: -12s;"></div>
+            </div>
+            <div class="mouse-glow" id="mouseGlow4"></div>
+          </div>
+          <div style="padding: 1rem;">
+            <div class="card-title">Five Points</div>
+            <div class="card-meta">Rich color mixing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTENDED BUTTONS -->
+    <section id="buttons" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Button Styles (Extended)</h2>
+        <p class="section-desc">Comprehensive collection of button treatments for different contexts and aesthetics.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Solid Variants</div>
+        <div class="button-showcase">
+          <button class="btn btn-solid">Primary</button>
+          <button class="btn btn-solid-dark">Dark</button>
+          <button class="btn btn-solid-light">Light</button>
+          <button class="btn btn-solid btn-pill">Pill Solid</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">Outline Variants</div>
+        <div class="button-showcase">
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-outline-light">Light Outline</button>
+          <button class="btn btn-outline btn-pill">Pill Outline</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">Gradient Variants</div>
+        <div class="button-showcase">
+          <button class="btn btn-gradient">Orange</button>
+          <button class="btn btn-gradient-purple">Purple</button>
+          <button class="btn btn-gradient-teal">Teal</button>
+          <button class="btn btn-gradient-multi">Multi</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">Glass & Ghost</div>
+        <div class="button-showcase">
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-glass">Glass</button>
+          <button class="btn btn-glass-dark">Dark Glass</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">3D Press Effect</div>
+        <div class="button-showcase">
+          <button class="btn btn-3d">Orange 3D</button>
+          <button class="btn btn-3d-green">Green 3D</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">Neon / Glow</div>
+        <div class="button-showcase">
+          <button class="btn btn-neon">Cyan Neon</button>
+          <button class="btn btn-neon-pink">Pink Neon</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem;">
+        <div class="card-label">Special Styles</div>
+        <div class="button-showcase">
+          <button class="btn btn-brutal">Brutalist</button>
+          <button class="btn btn-soft">Soft</button>
+          <button class="btn btn-link">Link Style</button>
+          <button class="btn btn-icon btn-solid">+</button>
+          <button class="btn btn-icon btn-icon-circle btn-ghost">X</button>
+          <button class="btn btn-solid btn-loading">Loading</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERIAL VARIATIONS -->
+    <section id="materials" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Material Variations</h2>
+        <p class="section-desc">Same shape, different materials - from opaque clay to transparent glass.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-clay"></div>
+            </div>
+          </div>
+          <div class="card-title">Clay / Ceramic</div>
+          <div class="card-meta">Opaque, warm, tactile</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-matte"></div>
+            </div>
+          </div>
+          <div class="card-title">Matte</div>
+          <div class="card-meta">Flat, no reflections</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-glossy"></div>
+            </div>
+          </div>
+          <div class="card-title">Glossy</div>
+          <div class="card-meta">Shiny, reflective</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-metal"></div>
+            </div>
+          </div>
+          <div class="card-title">Metallic</div>
+          <div class="card-meta">Chrome-like finish</div>
+        </div>
+
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-glass"></div>
+            </div>
+          </div>
+          <div class="card-title">Glass (Thin)</div>
+          <div class="card-meta">Transparent, light</div>
+        </div>
+
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-glass-thick"></div>
+            </div>
+          </div>
+          <div class="card-title">Glass (Thick)</div>
+          <div class="card-meta">More depth, refraction</div>
+        </div>
+
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-frosted"></div>
+            </div>
+          </div>
+          <div class="card-title">Frosted Glass</div>
+          <div class="card-meta">Blurred, diffused</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-neon"></div>
+            </div>
+          </div>
+          <div class="card-title">Neon Glow</div>
+          <div class="card-meta">Self-illuminated</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION VARIATIONS -->
+    <section id="reflections" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Reflection Variations</h2>
+        <p class="section-desc">Different reflection intensities and positions.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-clay"></div>
+            </div>
+          </div>
+          <div class="card-title">No Reflection</div>
+          <div class="card-meta">Base material only</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-clay with-reflection"></div>
+            </div>
+          </div>
+          <div class="card-title">Top Reflection</div>
+          <div class="card-meta">Subtle highlight</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-clay reflection-strong"></div>
+            </div>
+          </div>
+          <div class="card-title">Strong Reflection</div>
+          <div class="card-meta">Prominent highlight</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext material-clay with-reflection reflection-side"></div>
+            </div>
+          </div>
+          <div class="card-title">Top + Side</div>
+          <div class="card-meta">Multiple reflections</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTING VARIATIONS -->
+    <section id="lighting" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Lighting Directions</h2>
+        <p class="section-desc">Same material lit from different angles.</p>
+      </div>
+
+      <div class="grid-5">
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext light-top-left" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+          <div class="card-title">Top-Left</div>
+          <div class="card-meta">135deg</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext light-top-right" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+          <div class="card-title">Top-Right</div>
+          <div class="card-meta">225deg</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext light-bottom" style="box-shadow: 0 -20px 40px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+          <div class="card-title">Bottom</div>
+          <div class="card-meta">0deg</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext light-multi" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4);"></div>
+            </div>
+          </div>
+          <div class="card-title">Multi-Point</div>
+          <div class="card-meta">3+ light sources</div>
+        </div>
+
+        <div class="card shape-card-extended">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext light-rim"></div>
+            </div>
+          </div>
+          <div class="card-title">Rim Light</div>
+          <div class="card-meta">Edge highlighting</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORED GLASS -->
+    <section id="colored-glass" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Colored Glass</h2>
+        <p class="section-desc">Glass materials with color tints.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext glass-orange"></div>
+            </div>
+          </div>
+          <div class="card-title">Orange Glass</div>
+          <div class="card-meta">Warm, energetic</div>
+        </div>
+
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext glass-purple"></div>
+            </div>
+          </div>
+          <div class="card-title">Purple Glass</div>
+          <div class="card-meta">Creative, premium</div>
+        </div>
+
+        <div class="card shape-card-extended glass-bg-demo">
+          <div class="shape-preview-ext">
+            <div class="shape-3d-ext">
+              <div class="shape-base-ext glass-teal"></div>
+            </div>
+          </div>
+          <div class="card-title">Teal Glass</div>
+          <div class="card-meta">Fresh, modern</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <p>Design Catalogue V2 | <a href="catalogue.html">View V1 Catalogue</a> | <a href="index.html">Back to demos</a></p>
+  </footer>
+
+  <script>
+    // Mouse glow followers
+    document.querySelectorAll('.bg-demo').forEach(demo => {
+      const glow = demo.querySelector('.mouse-glow');
+      if (!glow) return;
+
+      demo.addEventListener('mousemove', (e) => {
+        const rect = demo.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glow.style.left = x + 'px';
+        glow.style.top = y + 'px';
+      });
+    });
+
+    // Background controls
+    function setOrbCount(count) {
+      const demo = document.querySelector('#bgDemo1 .bg-demo-inner');
+      const orbs = demo.querySelectorAll('.orb');
+
+      // Update button states
+      document.querySelectorAll('.bg-control-btn').forEach(btn => {
+        if (btn.textContent.includes('Points')) {
+          btn.classList.remove('active');
+        }
+      });
+      event.target.classList.add('active');
+
+      if (count === 5) {
+        // Add more orbs
+        if (orbs.length < 5) {
+          const orb4 = document.createElement('div');
+          orb4.className = 'orb';
+          orb4.style.cssText = 'width: 180px; height: 180px; background: #22c55e; bottom: 20%; right: -50px; animation-delay: -8s;';
+          demo.appendChild(orb4);
+
+          const orb5 = document.createElement('div');
+          orb5.className = 'orb';
+          orb5.style.cssText = 'width: 150px; height: 150px; background: #ec4899; top: 40%; left: 40%; animation-delay: -12s;';
+          demo.appendChild(orb5);
+        }
+      } else {
+        // Remove extra orbs
+        while (demo.querySelectorAll('.orb').length > 3) {
+          demo.removeChild(demo.lastElementChild);
+        }
+      }
+    }
+
+    function toggleGlowSize(size) {
+      const glow = document.querySelector('#mouseGlow1');
+      if (size === 'small') {
+        glow.style.width = '150px';
+        glow.style.height = '150px';
+      } else {
+        glow.style.width = '400px';
+        glow.style.height = '400px';
+      }
+    }
+
+    function toggleBlur(type) {
+      const orbs = document.querySelectorAll('#bgDemo1 .orb');
+      orbs.forEach(orb => {
+        if (type === 'soft') {
+          orb.style.filter = 'blur(80px)';
+        } else {
+          orb.style.filter = 'blur(30px)';
+        }
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>

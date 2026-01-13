@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System | Complete Visual Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Bebas+Neue&family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Syne:wght@400;600;700&family=Outfit:wght@400;500;600&family=Crimson+Pro:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: #111114;
+      --bg-card-hover: #18181c;
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.35);
+      --accent: #f97316;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background: rgba(17, 17, 20, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar-title {
+      padding: 0 1.25rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .nav-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-group-title {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      display: block;
+      padding: 0.5rem 1.25rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.03);
+      border-left-color: var(--accent);
+    }
+
+    .nav-link.active {
+      color: var(--text-primary);
+      background: rgba(249, 115, 22, 0.1);
+      border-left-color: var(--accent);
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 220px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .grid-5 { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .card-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .card-meta { font-size: 0.75rem; color: var(--text-secondary); }
+    .card-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 0.75rem; }
+
+    /* ========== BACKGROUNDS ========== */
+    .bg-demo {
+      position: relative;
+      height: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .bg-demo-inner {
+      position: absolute;
+      inset: 0;
+      background: #0a0a0f;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: orbFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.1); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(20px, 20px) scale(1.05); }
+    }
+
+    .mouse-glow {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .bg-demo:hover .mouse-glow { opacity: 1; }
+
+    .bg-label {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    .font-preview {
+      padding: 1.5rem;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .font-sample { font-size: 1.75rem; line-height: 1.3; margin-bottom: 0.5rem; }
+    .font-alphabet { font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.5px; }
+
+    .font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+    .font-instrument-serif { font-family: 'Instrument Serif', serif; }
+    .font-fraunces { font-family: 'Fraunces', serif; }
+    .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-dm-sans { font-family: 'DM Sans', sans-serif; }
+    .font-syne { font-family: 'Syne', sans-serif; }
+    .font-outfit { font-family: 'Outfit', sans-serif; }
+    .font-crimson { font-family: 'Crimson Pro', serif; }
+    .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+
+    /* ========== COLORS ========== */
+    .palette-card { padding: 0; overflow: hidden; }
+    .palette-colors { display: flex; height: 80px; }
+    .palette-color {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.4rem;
+      font-size: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: flex 0.2s;
+    }
+    .palette-color:hover { flex: 1.5; }
+    .palette-info { padding: 0.75rem 1rem; background: var(--bg-card); }
+    .palette-name { font-weight: 500; font-size: 0.9rem; }
+    .palette-desc { font-size: 0.75rem; color: var(--text-secondary); }
+
+    /* ========== 3D SHAPES & MATERIALS ========== */
+    .shape-card {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 180px;
+    }
+
+    .shape-preview {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1rem;
+      perspective: 600px;
+    }
+
+    .shape-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
+      50% { transform: translateY(-8px) rotateX(-3deg) rotateY(5deg); }
+    }
+
+    .shape-base {
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+    }
+
+    /* Shapes */
+    .shape-rounded { border-radius: 22px; }
+    .shape-circle { border-radius: 50%; }
+    .shape-squircle { border-radius: 30%; }
+    .shape-hexagon { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); border-radius: 0; }
+    .shape-shield { clip-path: polygon(50% 0%, 100% 12%, 100% 75%, 50% 100%, 0% 75%, 0% 12%); border-radius: 0; }
+    .shape-blob { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; animation: blobMorph 8s ease-in-out infinite; }
+
+    @keyframes blobMorph {
+      0%, 100% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+      50% { border-radius: 40% 50% 60% 50% / 60% 40% 50% 50%; }
+    }
+
+    /* Materials */
+    .mat-clay {
+      background: linear-gradient(155deg, #c9a87c 0%, #b8956d 25%, #a67c52 50%, #8b5e34 75%, #6d4422 100%);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 50px rgba(180,130,80,0.2), inset 0 3px 6px rgba(255,255,255,0.3), inset 0 -4px 12px rgba(60,30,10,0.3);
+    }
+
+    .mat-glass {
+      background: linear-gradient(155deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .mat-glass-thick {
+      background: linear-gradient(155deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 30%, rgba(200,220,255,0.1) 60%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(30px);
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.1);
+    }
+
+    .mat-frosted {
+      background: linear-gradient(155deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+      backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .mat-matte {
+      background: linear-gradient(155deg, #6b7280 0%, #4b5563 50%, #374151 100%);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
+    }
+
+    .mat-glossy {
+      background: linear-gradient(155deg, #f0f0f0 0%, #d0d0d0 20%, #a0a0a0 50%, #808080 80%, #606060 100%);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -3px 6px rgba(0,0,0,0.2);
+    }
+
+    .mat-metal {
+      background: linear-gradient(155deg, #e8e8e8 0%, #b8b8b8 15%, #8a8a8a 30%, #a0a0a0 50%, #707070 70%, #909090 85%, #606060 100%);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35), inset 0 1px 3px rgba(255,255,255,0.6), inset 0 -2px 5px rgba(0,0,0,0.3);
+    }
+
+    .mat-neon {
+      background: linear-gradient(155deg, #0ff 0%, #0aa 50%, #066 100%);
+      box-shadow: 0 0 25px rgba(0,255,255,0.5), 0 0 50px rgba(0,255,255,0.3), 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Reflections */
+    .with-reflection::before {
+      content: '';
+      position: absolute;
+      top: 5%; left: 10%; right: 10%; height: 35%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+      border-radius: 18px 18px 50% 50%;
+      pointer-events: none;
+    }
+
+    /* Glass background for demos */
+    .glass-bg { position: relative; }
+    .glass-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f97316 0%, #8b5cf6 50%, #06b6d4 100%);
+      border-radius: 12px;
+      z-index: -1;
+    }
+
+    /* Colored glass */
+    .glass-orange {
+      background: linear-gradient(155deg, rgba(249,115,22,0.4) 0%, rgba(249,115,22,0.2) 50%, rgba(249,115,22,0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(249,115,22,0.3);
+      box-shadow: 0 15px 30px rgba(249,115,22,0.2);
+    }
+
+    .glass-purple {
+      background: linear-gradient(155deg, rgba(139,92,246,0.4) 0%, rgba(139,92,246,0.2) 50%, rgba(139,92,246,0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(139,92,246,0.3);
+      box-shadow: 0 15px 30px rgba(139,92,246,0.2);
+    }
+
+    .glass-teal {
+      background: linear-gradient(155deg, rgba(20,184,166,0.4) 0%, rgba(20,184,166,0.2) 50%, rgba(20,184,166,0.1) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(20,184,166,0.3);
+      box-shadow: 0 15px 30px rgba(20,184,166,0.2);
+    }
+
+    /* ========== GLASS MORPHISM ========== */
+    .glass-card { position: relative; min-height: 160px; overflow: hidden; padding: 0; }
+    .glass-card-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .glass-panel {
+      position: absolute;
+      inset: 15px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .glass-light { backdrop-filter: blur(20px) saturate(180%); background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.3); }
+    .glass-medium { backdrop-filter: blur(40px) saturate(180%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
+    .glass-heavy { backdrop-filter: blur(60px) saturate(200%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-dark { backdrop-filter: blur(40px) saturate(180%); background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); }
+
+    /* ========== SHADOWS ========== */
+    .shadow-card { display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; }
+    .shadow-demo {
+      width: 70px; height: 70px;
+      background: linear-gradient(145deg, #3a3a42, #2a2a32);
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+    .shadow-basic { box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+    .shadow-soft { box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+    .shadow-layered { box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1), 0 16px 32px rgba(0,0,0,0.15); }
+    .shadow-glow { box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 60px rgba(249,115,22,0.3); }
+    .shadow-inner { box-shadow: inset 0 4px 8px rgba(255,255,255,0.1), inset 0 -6px 12px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.3); }
+
+    /* ========== ANIMATIONS ========== */
+    .anim-card { padding: 1.5rem; display: flex; flex-direction: column; align-items: center; min-height: 170px; }
+    .anim-demo {
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--accent), #fb923c);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .anim-float { animation: demoFloat 3s ease-in-out infinite; }
+    @keyframes demoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .anim-pulse { animation: demoPulse 2s ease-in-out infinite; }
+    @keyframes demoPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
+    .anim-spin { animation: demoSpin 4s linear infinite; }
+    @keyframes demoSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .anim-bounce { animation: demoBounce 1s ease infinite; }
+    @keyframes demoBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+    .anim-morph { animation: demoMorph 4s ease-in-out infinite; }
+    @keyframes demoMorph { 0%, 100% { border-radius: 10px; } 50% { border-radius: 50%; } }
+
+    /* ========== GRADIENTS ========== */
+    .gradient-card {
+      min-height: 120px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.75rem;
+      border-radius: 12px;
+      position: relative;
+    }
+    .gradient-info {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+    .grad-sunset { background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff9ff3 100%); }
+    .grad-ocean { background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f64f59 100%); }
+    .grad-forest { background: linear-gradient(160deg, #0f3443 0%, #34e89e 100%); }
+    .grad-midnight { background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
+    .grad-fire { background: linear-gradient(135deg, #f12711 0%, #f5af19 100%); }
+    .grad-aurora { background: linear-gradient(135deg, #00c9ff 0%, #92fe9d 50%, #f0f 100%); }
+    .grad-mesh {
+      background:
+        radial-gradient(at 40% 20%, #ff6b6b 0px, transparent 50%),
+        radial-gradient(at 80% 0%, #feca57 0px, transparent 50%),
+        radial-gradient(at 0% 50%, #667eea 0px, transparent 50%),
+        radial-gradient(at 80% 100%, #764ba2 0px, transparent 50%),
+        #0f0c29;
+    }
+
+    /* ========== TEXTURES ========== */
+    .texture-card { min-height: 120px; display: flex; align-items: flex-end; padding: 0.75rem; border-radius: 12px; }
+    .texture-noise { background-color: #1a1a2e; position: relative; }
+    .texture-noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.15;
+      border-radius: 12px;
+    }
+    .texture-dots { background-color: #16213e; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 16px 16px; }
+    .texture-grid { background-color: #0f3460; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; }
+    .texture-diagonal { background-color: #1a1a2e; background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.02) 8px, rgba(255,255,255,0.02) 16px); }
+
+    /* ========== EASING ========== */
+    .easing-card { padding: 1rem; }
+    .easing-demo { height: 32px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 0.75rem; position: relative; overflow: hidden; }
+    .easing-ball { width: 24px; height: 24px; background: var(--accent); border-radius: 50%; position: absolute; top: 4px; left: 4px; }
+    .easing-card:hover .easing-ball { left: calc(100% - 28px); }
+    .ease-linear .easing-ball { transition: left 0.8s linear; }
+    .ease-ease .easing-ball { transition: left 0.8s ease; }
+    .ease-expo .easing-ball { transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .ease-back .easing-ball { transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .easing-code { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-secondary); background: rgba(0,0,0,0.3); padding: 0.4rem; border-radius: 4px; }
+
+    /* ========== BUTTONS ========== */
+    .button-showcase { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1.25rem; align-items: center; }
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .btn-solid { background: var(--accent); color: white; }
+    .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(249,115,22,0.4); }
+    .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: white; }
+    .btn-ghost { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+    .btn-gradient { background: linear-gradient(135deg, #f97316, #fb923c); color: white; }
+    .btn-gradient:hover { transform: scale(1.05); }
+    .btn-gradient-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; }
+    .btn-gradient-teal { background: linear-gradient(135deg, #14b8a6, #2dd4bf); color: white; }
+    .btn-glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-glass:hover { background: rgba(255,255,255,0.2); }
+    .btn-3d { background: linear-gradient(180deg, #fb923c 0%, #f97316 100%); color: white; box-shadow: 0 3px 0 #c2410c; }
+    .btn-3d:hover { transform: translateY(2px); box-shadow: 0 1px 0 #c2410c; }
+    .btn-neon { background: transparent; color: #0ff; border: 2px solid #0ff; box-shadow: 0 0 10px #0ff, inset 0 0 10px rgba(0,255,255,0.1); }
+    .btn-neon:hover { box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, inset 0 0 20px rgba(0,255,255,0.2); }
+    .btn-neon-pink { background: transparent; color: #f0f; border: 2px solid #f0f; box-shadow: 0 0 10px #f0f; }
+    .btn-brutal { background: #fff; color: #000; border: 2px solid #000; border-radius: 0; box-shadow: 3px 3px 0 #000; }
+    .btn-brutal:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #000; }
+    .btn-soft { background: rgba(249,115,22,0.15); color: var(--accent); border-radius: 10px; }
+    .btn-soft:hover { background: rgba(249,115,22,0.25); }
+    .btn-pill { border-radius: 50px; }
+    .btn-icon { width: 40px; height: 40px; padding: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-title">Design System</div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Foundations</div>
+      <a href="#backgrounds" class="nav-link">Backgrounds</a>
+      <a href="#typography" class="nav-link">Typography</a>
+      <a href="#colors" class="nav-link">Color Palettes</a>
+      <a href="#gradients" class="nav-link">Gradients</a>
+      <a href="#textures" class="nav-link">Textures</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">3D & Depth</div>
+      <a href="#shapes" class="nav-link">Shapes</a>
+      <a href="#materials" class="nav-link">Materials</a>
+      <a href="#glass" class="nav-link">Glass Morphism</a>
+      <a href="#shadows" class="nav-link">Shadows</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Motion</div>
+      <a href="#animations" class="nav-link">Animations</a>
+      <a href="#easing" class="nav-link">Easing Curves</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Components</div>
+      <a href="#buttons" class="nav-link">Buttons</a>
+    </div>
+
+    <div class="nav-group" style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border);">
+      <a href="index.html" class="nav-link">Back to Demos</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+
+      <header class="hero">
+        <h1>Design System</h1>
+        <p>Complete visual reference for creating distinctive interfaces. All possibilities in one place.</p>
+      </header>
+
+      <!-- BACKGROUNDS -->
+      <section id="backgrounds" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Interactive Backgrounds</h2>
+          <p class="section-desc">Floating gradient orbs with mouse-following glow. Move your cursor to see the effect.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg1">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 180px; height: 180px; background: #f97316; top: -50px; left: -30px;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">1 Point</div>
+            </div>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg2">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 140px; height: 140px; background: #ec4899; top: -20px; left: 0;"></div>
+                <div class="orb" style="width: 140px; height: 140px; background: #8b5cf6; bottom: -20px; right: 0; animation-delay: -5s;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">2 Points</div>
+            </div>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg3">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 120px; height: 120px; background: #f97316; top: -30px; left: -20px;"></div>
+                <div class="orb" style="width: 100px; height: 100px; background: #8b5cf6; top: 40%; right: -20px; animation-delay: -4s;"></div>
+                <div class="orb" style="width: 110px; height: 110px; background: #06b6d4; bottom: -30px; left: 40%; animation-delay: -8s;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">3 Points</div>
+            </div>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg4">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 100px; height: 100px; background: #f97316; top: -20px; left: 10%;"></div>
+                <div class="orb" style="width: 90px; height: 90px; background: #ec4899; top: 30%; right: 5%; animation-delay: -3s;"></div>
+                <div class="orb" style="width: 100px; height: 100px; background: #8b5cf6; bottom: 10%; left: 5%; animation-delay: -6s;"></div>
+                <div class="orb" style="width: 80px; height: 80px; background: #22c55e; bottom: -20px; right: 30%; animation-delay: -9s;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">4 Points</div>
+            </div>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg5">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 90px; height: 90px; background: #f97316; top: -20px; left: 5%;"></div>
+                <div class="orb" style="width: 80px; height: 80px; background: #ec4899; top: 20%; right: 10%; animation-delay: -2s;"></div>
+                <div class="orb" style="width: 85px; height: 85px; background: #8b5cf6; top: 50%; left: 40%; animation-delay: -5s;"></div>
+                <div class="orb" style="width: 75px; height: 75px; background: #06b6d4; bottom: 15%; left: 10%; animation-delay: -8s;"></div>
+                <div class="orb" style="width: 70px; height: 70px; background: #22c55e; bottom: -15px; right: 20%; animation-delay: -11s;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">5 Points</div>
+            </div>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="bg-demo" id="bg6">
+              <div class="bg-demo-inner">
+                <div class="orb" style="width: 200px; height: 200px; background: #f97316; top: -60px; left: -40px; filter: blur(40px); opacity: 0.7;"></div>
+                <div class="orb" style="width: 180px; height: 180px; background: #8b5cf6; bottom: -50px; right: -40px; filter: blur(40px); opacity: 0.7; animation-delay: -6s;"></div>
+              </div>
+              <div class="mouse-glow"></div>
+              <div class="bg-label">Sharp Blur</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHY -->
+      <section id="typography" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Typography</h2>
+          <p class="section-desc">Distinctive fonts that stand out. All free from Google Fonts.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card font-preview">
+            <div class="font-sample font-space-grotesk">Space Grotesk</div>
+            <div class="font-alphabet font-space-grotesk">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Technical, geometric</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-instrument-serif" style="font-style: italic;">Instrument Serif</div>
+            <div class="font-alphabet font-instrument-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Elegant, editorial</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-fraunces">Fraunces</div>
+            <div class="font-alphabet font-fraunces">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Quirky, friendly</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-bebas">BEBAS NEUE</div>
+            <div class="font-alphabet font-bebas">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Bold, impactful</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-playfair">Playfair Display</div>
+            <div class="font-alphabet font-playfair">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Classic, luxurious</div>
+          </div>
+          <div class="card font-preview">
+            <div class="font-sample font-syne">Syne</div>
+            <div class="font-alphabet font-syne">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+            <div class="card-meta" style="margin-top: 0.75rem;">Unique, artistic</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLORS -->
+      <section id="colors" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Color Palettes</h2>
+          <p class="section-desc">Monochromatic palettes. Click any color to copy hex.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #fef3ed;" onclick="copyColor('#fef3ed')">50</div>
+              <div class="palette-color" style="background: #fbc6a8;" onclick="copyColor('#fbc6a8')">200</div>
+              <div class="palette-color" style="background: #f47238;" onclick="copyColor('#f47238')">400</div>
+              <div class="palette-color" style="background: #e23a08;" onclick="copyColor('#e23a08')">600</div>
+              <div class="palette-color" style="background: #791e10;" onclick="copyColor('#791e10')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Copper / Orange</div><div class="palette-desc">Warm, energetic</div></div>
+          </div>
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #e6fffa;" onclick="copyColor('#e6fffa')">50</div>
+              <div class="palette-color" style="background: #81e6d9;" onclick="copyColor('#81e6d9')">200</div>
+              <div class="palette-color" style="background: #38b2ac;" onclick="copyColor('#38b2ac')">400</div>
+              <div class="palette-color" style="background: #2c7a7b;" onclick="copyColor('#2c7a7b')">600</div>
+              <div class="palette-color" style="background: #1d4044;" onclick="copyColor('#1d4044')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Teal / Cyan</div><div class="palette-desc">Fresh, professional</div></div>
+          </div>
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #f5f3ff;" onclick="copyColor('#f5f3ff')">50</div>
+              <div class="palette-color" style="background: #c4b5fd;" onclick="copyColor('#c4b5fd')">200</div>
+              <div class="palette-color" style="background: #8b5cf6;" onclick="copyColor('#8b5cf6')">400</div>
+              <div class="palette-color" style="background: #6d28d9;" onclick="copyColor('#6d28d9')">600</div>
+              <div class="palette-color" style="background: #4c1d95;" onclick="copyColor('#4c1d95')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Violet / Purple</div><div class="palette-desc">Creative, premium</div></div>
+          </div>
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #ecfdf5;" onclick="copyColor('#ecfdf5')">50</div>
+              <div class="palette-color" style="background: #6ee7b7;" onclick="copyColor('#6ee7b7')">200</div>
+              <div class="palette-color" style="background: #34d399;" onclick="copyColor('#34d399')">400</div>
+              <div class="palette-color" style="background: #059669;" onclick="copyColor('#059669')">600</div>
+              <div class="palette-color" style="background: #064e3b;" onclick="copyColor('#064e3b')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Emerald / Green</div><div class="palette-desc">Natural, growth</div></div>
+          </div>
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #eff6ff;" onclick="copyColor('#eff6ff')">50</div>
+              <div class="palette-color" style="background: #93c5fd;" onclick="copyColor('#93c5fd')">200</div>
+              <div class="palette-color" style="background: #3b82f6;" onclick="copyColor('#3b82f6')">400</div>
+              <div class="palette-color" style="background: #2563eb;" onclick="copyColor('#2563eb')">600</div>
+              <div class="palette-color" style="background: #1e3a8a;" onclick="copyColor('#1e3a8a')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Blue</div><div class="palette-desc">Calm, reliable</div></div>
+          </div>
+          <div class="card palette-card">
+            <div class="palette-colors">
+              <div class="palette-color" style="background: #fef2f2;" onclick="copyColor('#fef2f2')">50</div>
+              <div class="palette-color" style="background: #fca5a5;" onclick="copyColor('#fca5a5')">200</div>
+              <div class="palette-color" style="background: #f87171;" onclick="copyColor('#f87171')">400</div>
+              <div class="palette-color" style="background: #dc2626;" onclick="copyColor('#dc2626')">600</div>
+              <div class="palette-color" style="background: #7f1d1d;" onclick="copyColor('#7f1d1d')">900</div>
+            </div>
+            <div class="palette-info"><div class="palette-name">Red / Rose</div><div class="palette-desc">Bold, urgent</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRADIENTS -->
+      <section id="gradients" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Gradients</h2>
+          <p class="section-desc">Background gradients for atmosphere.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card gradient-card grad-sunset"><div class="gradient-info">Sunset</div></div>
+          <div class="card gradient-card grad-ocean"><div class="gradient-info">Ocean</div></div>
+          <div class="card gradient-card grad-forest"><div class="gradient-info">Forest</div></div>
+          <div class="card gradient-card grad-midnight"><div class="gradient-info">Midnight</div></div>
+          <div class="card gradient-card grad-fire"><div class="gradient-info">Fire</div></div>
+          <div class="card gradient-card grad-aurora"><div class="gradient-info">Aurora</div></div>
+          <div class="card gradient-card grad-mesh"><div class="gradient-info">Mesh</div></div>
+        </div>
+      </section>
+
+      <!-- TEXTURES -->
+      <section id="textures" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Textures</h2>
+          <p class="section-desc">Subtle patterns for depth.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card texture-card texture-noise"><div class="gradient-info">Noise</div></div>
+          <div class="card texture-card texture-dots"><div class="gradient-info">Dots</div></div>
+          <div class="card texture-card texture-grid"><div class="gradient-info">Grid</div></div>
+          <div class="card texture-card texture-diagonal"><div class="gradient-info">Diagonal</div></div>
+        </div>
+      </section>
+
+      <!-- SHAPES -->
+      <section id="shapes" class="section">
+        <div class="section-header">
+          <h2 class="section-title">3D Shapes</h2>
+          <p class="section-desc">Different shape options for floating icons.</p>
+        </div>
+        <div class="grid-5">
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-rounded"></div></div></div>
+            <div class="card-title">Rounded</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-circle"></div></div></div>
+            <div class="card-title">Circle</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-squircle"></div></div></div>
+            <div class="card-title">Squircle</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-blob"></div></div></div>
+            <div class="card-title">Blob</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-hexagon"></div></div></div>
+            <div class="card-title">Hexagon</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-shield"></div></div></div>
+            <div class="card-title">Shield</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MATERIALS -->
+      <section id="materials" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Materials</h2>
+          <p class="section-desc">From opaque clay to transparent glass.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay shape-rounded"></div></div></div>
+            <div class="card-title">Clay</div>
+            <div class="card-meta">Opaque, warm</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-matte shape-rounded"></div></div></div>
+            <div class="card-title">Matte</div>
+            <div class="card-meta">Flat, soft</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-glossy shape-rounded"></div></div></div>
+            <div class="card-title">Glossy</div>
+            <div class="card-meta">Shiny</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-metal shape-rounded"></div></div></div>
+            <div class="card-title">Metallic</div>
+            <div class="card-meta">Chrome</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-glass shape-rounded"></div></div></div>
+            <div class="card-title">Glass Thin</div>
+            <div class="card-meta">Transparent</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-glass-thick shape-rounded"></div></div></div>
+            <div class="card-title">Glass Thick</div>
+            <div class="card-meta">More depth</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-frosted shape-rounded"></div></div></div>
+            <div class="card-title">Frosted</div>
+            <div class="card-meta">Blurred</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-neon shape-rounded"></div></div></div>
+            <div class="card-title">Neon</div>
+            <div class="card-meta">Glowing</div>
+          </div>
+          <div class="card shape-card">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base mat-clay with-reflection shape-rounded"></div></div></div>
+            <div class="card-title">+ Reflection</div>
+            <div class="card-meta">Top highlight</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base glass-orange shape-rounded"></div></div></div>
+            <div class="card-title">Orange Glass</div>
+            <div class="card-meta">Tinted</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base glass-purple shape-rounded"></div></div></div>
+            <div class="card-title">Purple Glass</div>
+            <div class="card-meta">Tinted</div>
+          </div>
+          <div class="card shape-card glass-bg">
+            <div class="shape-preview"><div class="shape-3d"><div class="shape-base glass-teal shape-rounded"></div></div></div>
+            <div class="card-title">Teal Glass</div>
+            <div class="card-meta">Tinted</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GLASS MORPHISM -->
+      <section id="glass" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Glass Morphism</h2>
+          <p class="section-desc">Frosted glass panel effects.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card glass-card"><div class="glass-card-bg"></div><div class="glass-panel glass-light">Light</div></div>
+          <div class="card glass-card"><div class="glass-card-bg"></div><div class="glass-panel glass-medium">Medium</div></div>
+          <div class="card glass-card"><div class="glass-card-bg"></div><div class="glass-panel glass-heavy">Heavy</div></div>
+          <div class="card glass-card"><div class="glass-card-bg"></div><div class="glass-panel glass-dark">Dark</div></div>
+        </div>
+      </section>
+
+      <!-- SHADOWS -->
+      <section id="shadows" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Shadows</h2>
+          <p class="section-desc">Different shadow approaches.</p>
+        </div>
+        <div class="grid-5">
+          <div class="card shadow-card"><div class="shadow-demo shadow-basic"></div><div class="card-title">Basic</div></div>
+          <div class="card shadow-card"><div class="shadow-demo shadow-soft"></div><div class="card-title">Soft</div></div>
+          <div class="card shadow-card"><div class="shadow-demo shadow-layered"></div><div class="card-title">Layered</div></div>
+          <div class="card shadow-card"><div class="shadow-demo shadow-glow"></div><div class="card-title">Glow</div></div>
+          <div class="card shadow-card"><div class="shadow-demo shadow-inner"></div><div class="card-title">Inner</div></div>
+        </div>
+      </section>
+
+      <!-- ANIMATIONS -->
+      <section id="animations" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Animations</h2>
+          <p class="section-desc">Common motion patterns.</p>
+        </div>
+        <div class="grid-5">
+          <div class="card anim-card"><div class="anim-demo anim-float"></div><div class="card-title">Float</div></div>
+          <div class="card anim-card"><div class="anim-demo anim-pulse"></div><div class="card-title">Pulse</div></div>
+          <div class="card anim-card"><div class="anim-demo anim-spin"></div><div class="card-title">Spin</div></div>
+          <div class="card anim-card"><div class="anim-demo anim-bounce"></div><div class="card-title">Bounce</div></div>
+          <div class="card anim-card"><div class="anim-demo anim-morph"></div><div class="card-title">Morph</div></div>
+        </div>
+      </section>
+
+      <!-- EASING -->
+      <section id="easing" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Easing Curves</h2>
+          <p class="section-desc">Hover to see animation timing.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card easing-card ease-linear"><div class="easing-demo"><div class="easing-ball"></div></div><div class="card-title">Linear</div><div class="easing-code">linear</div></div>
+          <div class="card easing-card ease-ease"><div class="easing-demo"><div class="easing-ball"></div></div><div class="card-title">Ease</div><div class="easing-code">ease</div></div>
+          <div class="card easing-card ease-expo"><div class="easing-demo"><div class="easing-ball"></div></div><div class="card-title">Expo</div><div class="easing-code">cubic-bezier(0.16, 1, 0.3, 1)</div></div>
+          <div class="card easing-card ease-back"><div class="easing-demo"><div class="easing-ball"></div></div><div class="card-title">Back</div><div class="easing-code">cubic-bezier(0.34, 1.56, 0.64, 1)</div></div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <section id="buttons" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Buttons</h2>
+          <p class="section-desc">All button style variations.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 1rem;">
+          <div class="card-label">Solid & Outline</div>
+          <div class="button-showcase">
+            <button class="btn btn-solid">Solid</button>
+            <button class="btn btn-solid btn-pill">Pill</button>
+            <button class="btn btn-outline">Outline</button>
+            <button class="btn btn-ghost">Ghost</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1rem;">
+          <div class="card-label">Gradients</div>
+          <div class="button-showcase">
+            <button class="btn btn-gradient">Orange</button>
+            <button class="btn btn-gradient-purple">Purple</button>
+            <button class="btn btn-gradient-teal">Teal</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1rem;">
+          <div class="card-label">Glass & 3D</div>
+          <div class="button-showcase">
+            <button class="btn btn-glass">Glass</button>
+            <button class="btn btn-3d">3D Press</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 1rem;">
+          <div class="card-label">Neon & Special</div>
+          <div class="button-showcase">
+            <button class="btn btn-neon">Neon Cyan</button>
+            <button class="btn btn-neon-pink">Neon Pink</button>
+            <button class="btn btn-brutal">Brutal</button>
+            <button class="btn btn-soft">Soft</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Icons</div>
+          <div class="button-showcase">
+            <button class="btn btn-icon btn-solid">+</button>
+            <button class="btn btn-icon btn-ghost">X</button>
+            <button class="btn btn-icon btn-outline" style="border-radius: 50%;">?</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <p>Design System | <a href="index.html">Back to Demos</a></p>
+    </footer>
+  </main>
+
+  <script>
+    // Mouse glow effect
+    document.querySelectorAll('.bg-demo').forEach(demo => {
+      const glow = demo.querySelector('.mouse-glow');
+      if (!glow) return;
+      demo.addEventListener('mousemove', (e) => {
+        const rect = demo.getBoundingClientRect();
+        glow.style.left = (e.clientX - rect.left) + 'px';
+        glow.style.top = (e.clientY - rect.top) + 'px';
+      });
+    });
+
+    // Copy color
+    function copyColor(hex) {
+      navigator.clipboard.writeText(hex);
+      const el = event.target;
+      const orig = el.textContent;
+      el.textContent = '✓';
+      setTimeout(() => el.textContent = orig, 600);
+    }
+
+    // Smooth scroll & active state
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Update active nav on scroll
+    const sections = document.querySelectorAll('.section');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

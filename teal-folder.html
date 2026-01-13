@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teal Folder - Glass UI Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --teal-100: #e0f7f6;
+      --teal-200: #a8e6e3;
+      --teal-300: #5fcec8;
+      --teal-400: #2db5ad;
+      --teal-500: #1a9a93;
+      --teal-600: #0f7872;
+      --teal-700: #085752;
+      --teal-800: #043a38;
+      --teal-900: #021f1e;
+
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: rgba(0, 0, 0, 0.4);
+
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.5);
+
+      --glow: rgba(95, 206, 200, 0.4);
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(145deg, var(--teal-600) 0%, var(--teal-800) 40%, var(--teal-900) 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Navigation */
+    .nav-back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      transform: translateX(-4px);
+    }
+
+    /* Animated background */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      animation: float-orb 25s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--teal-400) 0%, transparent 70%);
+      top: -300px;
+      right: -200px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--teal-500) 0%, transparent 70%);
+      bottom: -200px;
+      left: -150px;
+      animation-delay: -8s;
+    }
+
+    .orb-3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--teal-300) 0%, transparent 70%);
+      top: 40%;
+      left: 30%;
+      animation-delay: -16s;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -40px) scale(1.08); }
+      66% { transform: translate(-30px, 30px) scale(0.92); }
+    }
+
+    /* Main container - full width centered content */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px;
+      animation: content-appear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes content-appear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 3D Blob Icon */
+    .icon-section {
+      perspective: 1200px;
+    }
+
+    .icon-3d-wrapper {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      transform-style: preserve-3d;
+      animation: icon-float 7s ease-in-out infinite;
+    }
+
+    @keyframes icon-float {
+      0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+      20% {
+        transform: translateY(-18px) rotateX(4deg) rotateY(-6deg) rotateZ(2deg);
+      }
+      40% {
+        transform: translateY(-8px) rotateX(-3deg) rotateY(4deg) rotateZ(-1deg);
+      }
+      60% {
+        transform: translateY(-22px) rotateX(2deg) rotateY(-3deg) rotateZ(1deg);
+      }
+      80% {
+        transform: translateY(-12px) rotateX(-2deg) rotateY(5deg) rotateZ(-2deg);
+      }
+    }
+
+    .icon-3d {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Blob shape base */
+    .icon-base {
+      position: absolute;
+      inset: 0;
+      /* Organic blob shape */
+      border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
+      background: linear-gradient(
+        155deg,
+        var(--teal-300) 0%,
+        var(--teal-400) 25%,
+        var(--teal-500) 50%,
+        var(--teal-600) 75%,
+        var(--teal-700) 100%
+      );
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px var(--glow),
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -6px 20px rgba(0, 0, 0, 0.3);
+      transform: translateZ(-25px);
+      animation: blob-morph 12s ease-in-out infinite;
+    }
+
+    @keyframes blob-morph {
+      0%, 100% {
+        border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
+      }
+      25% {
+        border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+      }
+      50% {
+        border-radius: 45% 55% 45% 55% / 50% 45% 55% 50%;
+      }
+      75% {
+        border-radius: 50% 50% 55% 45% / 55% 45% 50% 50%;
+      }
+    }
+
+    /* Glass overlay - also morphs */
+    .icon-glass {
+      position: absolute;
+      inset: 12px;
+      border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
+      background: linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0.08) 100%
+      );
+      backdrop-filter: blur(4px);
+      transform: translateZ(12px);
+      animation: blob-morph 12s ease-in-out infinite;
+    }
+
+    /* Reflection highlight */
+    .icon-reflection {
+      position: absolute;
+      top: 16px;
+      left: 30px;
+      right: 30px;
+      height: 70px;
+      border-radius: 50% 50% 60% 60%;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.15) 40%,
+        transparent 100%
+      );
+      transform: translateZ(18px);
+      animation: blob-morph 12s ease-in-out infinite;
+    }
+
+    /* Folder icon */
+    .icon-folder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(30px);
+      width: 100px;
+      height: 80px;
+    }
+
+    .folder-back {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(180deg, var(--teal-200) 0%, var(--teal-300) 100%);
+      border-radius: 8px 8px 12px 12px;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .folder-tab {
+      position: absolute;
+      top: 0;
+      left: 8px;
+      width: 40px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--teal-100) 0%, var(--teal-200) 100%);
+      border-radius: 6px 6px 0 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .folder-front {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(180deg, var(--teal-100) 0%, var(--teal-200) 100%);
+      border-radius: 4px 4px 10px 10px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .folder-line {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: var(--teal-400);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    /* Shadow */
+    .icon-shadow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(-60px);
+      width: 200px;
+      height: 50px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+      animation: shadow-pulse 7s ease-in-out infinite;
+    }
+
+    @keyframes shadow-pulse {
+      0%, 100% { transform: translateX(-50%) translateZ(-60px) scale(1); opacity: 0.7; }
+      30% { transform: translateX(-50%) translateZ(-60px) scale(0.85); opacity: 0.4; }
+      60% { transform: translateX(-50%) translateZ(-60px) scale(0.9); opacity: 0.5; }
+    }
+
+    /* Text content */
+    .content-text {
+      text-align: center;
+      animation: text-appear 0.8s ease-out 0.3s both;
+    }
+
+    @keyframes text-appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-title {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .content-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* Stop button */
+    .stop-button {
+      margin-top: 20px;
+      padding: 14px 36px;
+      background: linear-gradient(180deg, var(--teal-400) 0%, var(--teal-500) 100%);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 4px 20px rgba(45, 181, 173, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      animation: text-appear 0.8s ease-out 0.5s both;
+    }
+
+    .stop-button:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 8px 30px rgba(45, 181, 173, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .stop-button:active {
+      transform: translateY(0);
+    }
+
+    /* Cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    body:hover .cursor-glow {
+      opacity: 1;
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: particle-float 15s linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
+    .particle:nth-child(2) { left: 20%; animation-delay: -3s; animation-duration: 22s; }
+    .particle:nth-child(3) { left: 35%; animation-delay: -6s; animation-duration: 16s; }
+    .particle:nth-child(4) { left: 50%; animation-delay: -9s; animation-duration: 20s; }
+    .particle:nth-child(5) { left: 65%; animation-delay: -12s; animation-duration: 24s; }
+    .particle:nth-child(6) { left: 80%; animation-delay: -4s; animation-duration: 19s; }
+    .particle:nth-child(7) { left: 90%; animation-delay: -8s; animation-duration: 21s; }
+
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+      }
+      90% {
+        opacity: 1;
+        transform: translateY(10vh) scale(1);
+      }
+      100% {
+        transform: translateY(-10vh) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <a href="index.html" class="nav-back">
+    <span>←</span>
+    <span>All Demos</span>
+  </a>
+
+  <!-- Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- 3D Blob Icon -->
+    <div class="icon-section">
+      <div class="icon-3d-wrapper" id="iconWrapper">
+        <div class="icon-3d">
+          <div class="icon-base"></div>
+          <div class="icon-glass"></div>
+          <div class="icon-reflection"></div>
+
+          <!-- Folder icon -->
+          <div class="icon-folder">
+            <div class="folder-back"></div>
+            <div class="folder-tab"></div>
+            <div class="folder-front">
+              <div class="folder-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="icon-shadow"></div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="content-text">
+      <h1 class="content-title">Digging through...</h1>
+      <p class="content-subtitle">/Users/projects/screenshots/</p>
+    </div>
+
+    <button class="stop-button">Stop</button>
+  </div>
+
+  <script>
+    // Cursor glow
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Parallax effect
+    const iconWrapper = document.getElementById('iconWrapper');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      const rotateX = y * -12;
+      const rotateY = x * 12;
+
+      iconWrapper.style.transform = `
+        translateY(${Math.sin(Date.now() / 1000) * 15}px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+    });
+  </script>
+</body>
+</html>

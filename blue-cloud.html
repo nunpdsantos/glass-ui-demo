@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Cloud - Glass UI Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue-100: #dbeafe;
+      --blue-200: #bfdbfe;
+      --blue-300: #93c5fd;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --blue-900: #1e3a8a;
+      --blue-950: #0f172a;
+
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.1);
+
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.5);
+
+      --glow: rgba(96, 165, 250, 0.45);
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(155deg, var(--blue-700) 0%, var(--blue-800) 35%, var(--blue-950) 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Navigation */
+    .nav-back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      transform: translateX(-4px);
+    }
+
+    /* Background */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      animation: float-orb 26s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--blue-500) 0%, transparent 70%);
+      top: -300px;
+      left: -200px;
+    }
+
+    .orb-2 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--blue-400) 0%, transparent 70%);
+      bottom: -200px;
+      right: -150px;
+      animation-delay: -10s;
+    }
+
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #818cf8 0%, transparent 70%);
+      top: 40%;
+      right: 30%;
+      animation-delay: -18s;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(60px, -40px) scale(1.08); }
+      66% { transform: translate(-40px, 50px) scale(0.92); }
+    }
+
+    /* Main container */
+    .main-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      animation: content-appear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes content-appear {
+      to { opacity: 1; }
+    }
+
+    /* 3D Pill/Cloud Icon */
+    .icon-section {
+      perspective: 1200px;
+    }
+
+    .icon-3d-wrapper {
+      position: relative;
+      width: 260px;
+      height: 180px;
+      transform-style: preserve-3d;
+      animation: icon-float 8s ease-in-out infinite;
+    }
+
+    @keyframes icon-float {
+      0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+      }
+      20% {
+        transform: translateY(-20px) rotateX(5deg) rotateY(-6deg);
+      }
+      40% {
+        transform: translateY(-8px) rotateX(-3deg) rotateY(4deg);
+      }
+      60% {
+        transform: translateY(-24px) rotateX(4deg) rotateY(-5deg);
+      }
+      80% {
+        transform: translateY(-12px) rotateX(-2deg) rotateY(3deg);
+      }
+    }
+
+    .icon-3d {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Pill shape base */
+    .icon-base {
+      position: absolute;
+      inset: 0;
+      border-radius: 90px;
+      background: linear-gradient(
+        160deg,
+        var(--blue-200) 0%,
+        var(--blue-300) 20%,
+        var(--blue-400) 40%,
+        var(--blue-500) 60%,
+        var(--blue-700) 100%
+      );
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.45),
+        0 0 100px var(--glow),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -8px 24px rgba(0, 0, 0, 0.25);
+      transform: translateZ(-24px);
+    }
+
+    /* Glass overlay */
+    .icon-glass {
+      position: absolute;
+      inset: 10px;
+      border-radius: 80px;
+      background: linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.12) 30%,
+        rgba(255, 255, 255, 0.02) 55%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      backdrop-filter: blur(4px);
+      transform: translateZ(12px);
+    }
+
+    /* Top reflection */
+    .icon-reflection {
+      position: absolute;
+      top: 12px;
+      left: 35px;
+      right: 35px;
+      height: 50px;
+      border-radius: 50px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+      );
+      transform: translateZ(18px);
+    }
+
+    /* Cloud icon */
+    .icon-cloud {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(28px);
+      width: 100px;
+      height: 70px;
+    }
+
+    .cloud-svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--blue-100);
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Sync arrows */
+    .sync-arrows {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(35px);
+      width: 50px;
+      height: 50px;
+      animation: sync-rotate 3s linear infinite;
+    }
+
+    @keyframes sync-rotate {
+      from { transform: translate(-50%, -50%) translateZ(35px) rotate(0deg); }
+      to { transform: translate(-50%, -50%) translateZ(35px) rotate(360deg); }
+    }
+
+    .sync-svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--blue-700);
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    /* Shadow */
+    .icon-shadow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(-60px);
+      width: 200px;
+      height: 50px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.45) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: shadow-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes shadow-pulse {
+      0%, 100% { transform: translateX(-50%) translateZ(-60px) scale(1); opacity: 0.6; }
+      50% { transform: translateX(-50%) translateZ(-60px) scale(0.75); opacity: 0.3; }
+    }
+
+    /* Content */
+    .content-text {
+      text-align: center;
+      animation: text-appear 0.8s ease-out 0.4s both;
+    }
+
+    @keyframes text-appear {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-title {
+      font-size: 34px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .content-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    /* Upload progress */
+    .upload-progress {
+      width: 320px;
+      animation: text-appear 0.8s ease-out 0.6s both;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .progress-label {
+      color: var(--text-secondary);
+    }
+
+    .progress-value {
+      color: var(--blue-300);
+      font-weight: 500;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue-400), var(--blue-300));
+      border-radius: 4px;
+      width: 0%;
+      animation: progress-grow 3s ease-out 1s forwards;
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    @keyframes progress-grow {
+      to { width: 73%; }
+    }
+
+    /* File list */
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+      width: 100%;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 10px;
+      animation: file-appear 0.4s ease-out both;
+    }
+
+    .file-item:nth-child(1) { animation-delay: 1.2s; }
+    .file-item:nth-child(2) { animation-delay: 1.4s; }
+    .file-item:nth-child(3) { animation-delay: 1.6s; }
+
+    @keyframes file-appear {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .file-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--blue-400), var(--blue-500));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .file-info {
+      flex: 1;
+    }
+
+    .file-name {
+      font-size: 13px;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .file-size {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .file-status {
+      font-size: 14px;
+    }
+
+    /* Cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    body:hover .cursor-glow { opacity: 1; }
+
+    /* Floating data particles */
+    .data-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .data-particle {
+      position: absolute;
+      width: 3px;
+      height: 12px;
+      background: linear-gradient(180deg, var(--blue-300), transparent);
+      border-radius: 2px;
+      animation: data-stream 4s linear infinite;
+      opacity: 0.5;
+    }
+
+    .data-particle:nth-child(1) { left: 8%; animation-delay: 0s; }
+    .data-particle:nth-child(2) { left: 18%; animation-delay: -0.5s; }
+    .data-particle:nth-child(3) { left: 28%; animation-delay: -1s; }
+    .data-particle:nth-child(4) { left: 42%; animation-delay: -1.5s; }
+    .data-particle:nth-child(5) { left: 55%; animation-delay: -2s; }
+    .data-particle:nth-child(6) { left: 68%; animation-delay: -2.5s; }
+    .data-particle:nth-child(7) { left: 78%; animation-delay: -3s; }
+    .data-particle:nth-child(8) { left: 88%; animation-delay: -3.5s; }
+    .data-particle:nth-child(9) { left: 95%; animation-delay: -0.8s; }
+
+    @keyframes data-stream {
+      0% {
+        transform: translateY(100vh) scaleY(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+        transform: translateY(80vh) scaleY(1);
+      }
+      90% {
+        opacity: 0.6;
+        transform: translateY(10vh) scaleY(1);
+      }
+      100% {
+        transform: translateY(-20px) scaleY(0.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <a href="index.html" class="nav-back">
+    <span>←</span>
+    <span>All Demos</span>
+  </a>
+
+  <!-- Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Data particles -->
+  <div class="data-particles">
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+    <div class="data-particle"></div>
+  </div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- 3D Cloud Icon -->
+    <div class="icon-section">
+      <div class="icon-3d-wrapper" id="iconWrapper">
+        <div class="icon-3d">
+          <div class="icon-base"></div>
+          <div class="icon-glass"></div>
+          <div class="icon-reflection"></div>
+
+          <!-- Cloud -->
+          <div class="icon-cloud">
+            <svg class="cloud-svg" viewBox="0 0 100 70">
+              <path d="M80 55 C95 55, 100 45, 95 35 C100 20, 80 10, 65 20 C55 5, 30 5, 25 25 C10 25, 0 40, 15 55 Z"/>
+            </svg>
+          </div>
+
+          <!-- Sync arrows -->
+          <div class="sync-arrows">
+            <svg class="sync-svg" viewBox="0 0 50 50">
+              <path d="M25 10 L35 20 L28 20 L28 32"/>
+              <path d="M25 40 L15 30 L22 30 L22 18"/>
+            </svg>
+          </div>
+        </div>
+        <div class="icon-shadow"></div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-text">
+      <h1 class="content-title">Syncing to Cloud</h1>
+      <p class="content-subtitle">Uploading your files securely...</p>
+
+      <div class="upload-progress">
+        <div class="progress-header">
+          <span class="progress-label">Progress</span>
+          <span class="progress-value" id="progressValue">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="file-list">
+          <div class="file-item">
+            <div class="file-icon">📄</div>
+            <div class="file-info">
+              <div class="file-name">project_final.zip</div>
+              <div class="file-size">234.5 MB</div>
+            </div>
+            <span class="file-status">✓</span>
+          </div>
+          <div class="file-item">
+            <div class="file-icon">🖼</div>
+            <div class="file-info">
+              <div class="file-name">design_assets.fig</div>
+              <div class="file-size">89.2 MB</div>
+            </div>
+            <span class="file-status">⟳</span>
+          </div>
+          <div class="file-item">
+            <div class="file-icon">📁</div>
+            <div class="file-info">
+              <div class="file-name">documents/</div>
+              <div class="file-size">12 files</div>
+            </div>
+            <span class="file-status">○</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Cursor glow
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Parallax
+    const iconWrapper = document.getElementById('iconWrapper');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      iconWrapper.style.transform = `
+        translateY(${Math.sin(Date.now() / 1000) * 18}px)
+        rotateX(${y * -12}deg)
+        rotateY(${x * 12}deg)
+      `;
+    });
+
+    // Animate progress
+    const progressValue = document.getElementById('progressValue');
+    const progressFill = document.getElementById('progressFill');
+
+    setTimeout(() => {
+      let current = 0;
+      const target = 73;
+      const duration = 3000;
+      const start = performance.now();
+
+      function animateProgress(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        current = target * eased;
+        progressValue.textContent = Math.round(current) + '%';
+
+        if (progress < 1) {
+          requestAnimationFrame(animateProgress);
+        }
+      }
+
+      requestAnimationFrame(animateProgress);
+    }, 1000);
+  </script>
+</body>
+</html>

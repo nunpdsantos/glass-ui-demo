@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass UI Demo Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0a0a0f;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.4);
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* Animated gradient background */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(232, 130, 58, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(45, 181, 173, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 90%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+      animation: gradient-shift 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Grid pattern overlay */
+    .grid-pattern {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+    }
+
+    /* Main content */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+      animation: fade-in-down 0.8s ease-out;
+    }
+
+    @keyframes fade-in-down {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .header h1 {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Demo grid */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Demo card */
+    .demo-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fade-in-up 0.6s ease-out both;
+    }
+
+    .demo-card:nth-child(1) { animation-delay: 0.1s; }
+    .demo-card:nth-child(2) { animation-delay: 0.15s; }
+    .demo-card:nth-child(3) { animation-delay: 0.2s; }
+    .demo-card:nth-child(4) { animation-delay: 0.25s; }
+    .demo-card:nth-child(5) { animation-delay: 0.3s; }
+    .demo-card:nth-child(6) { animation-delay: 0.35s; }
+    .demo-card:nth-child(7) { animation-delay: 0.4s; }
+    .demo-card:nth-child(8) { animation-delay: 0.45s; }
+    .demo-card:nth-child(9) { animation-delay: 0.5s; }
+    .demo-card:nth-child(10) { animation-delay: 0.55s; }
+    .demo-card:nth-child(11) { animation-delay: 0.6s; }
+
+    /* Featured card */
+    .demo-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(255, 200, 150, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-color: rgba(255, 200, 150, 0.15);
+    }
+
+    .demo-card.featured .card-content {
+      gap: 32px;
+    }
+
+    .demo-card.featured .card-icon {
+      width: 100px;
+      height: 100px;
+      font-size: 42px;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 6px 12px;
+      background: linear-gradient(135deg, #f4a853, #c45d2c);
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--card-gradient);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .demo-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Card colors */
+    .demo-card.copper { --card-gradient: radial-gradient(ellipse at 30% 30%, rgba(232, 130, 58, 0.15) 0%, transparent 70%); }
+    .demo-card.teal { --card-gradient: radial-gradient(ellipse at 30% 30%, rgba(45, 181, 173, 0.15) 0%, transparent 70%); }
+    .demo-card.purple { --card-gradient: radial-gradient(ellipse at 30% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 70%); }
+    .demo-card.green { --card-gradient: radial-gradient(ellipse at 30% 30%, rgba(74, 222, 128, 0.15) 0%, transparent 70%); }
+    .demo-card.blue { --card-gradient: radial-gradient(ellipse at 30% 30%, rgba(96, 165, 250, 0.15) 0%, transparent 70%); }
+
+    /* Card content */
+    .card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    /* Mini 3D icon preview */
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: var(--icon-gradient);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .card-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--icon-bg);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .demo-card.copper .card-icon {
+      --icon-gradient: linear-gradient(135deg, #f4a853, #c45d2c);
+      --icon-bg: rgba(232, 130, 58, 0.15);
+    }
+    .demo-card.teal .card-icon {
+      --icon-gradient: linear-gradient(135deg, #5fcec8, #0f7872);
+      --icon-bg: rgba(45, 181, 173, 0.15);
+    }
+    .demo-card.purple .card-icon {
+      --icon-gradient: linear-gradient(135deg, #c084fc, #7c3aed);
+      --icon-bg: rgba(168, 85, 247, 0.15);
+    }
+    .demo-card.green .card-icon {
+      --icon-gradient: linear-gradient(135deg, #4ade80, #16a34a);
+      --icon-bg: rgba(74, 222, 128, 0.15);
+    }
+    .demo-card.blue .card-icon {
+      --icon-gradient: linear-gradient(135deg, #60a5fa, #2563eb);
+      --icon-bg: rgba(96, 165, 250, 0.15);
+    }
+
+    .card-info {
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .demo-card:hover .card-arrow {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      animation: fade-in-up 0.6s ease-out 0.6s both;
+    }
+
+    .footer p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Guide link */
+    .guide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .guide-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg-gradient"></div>
+  <div class="grid-pattern"></div>
+
+  <!-- Main content -->
+  <div class="container">
+    <header class="header">
+      <div class="header-badge">
+        <span class="badge-dot"></span>
+        <span>Interactive Demos</span>
+      </div>
+      <h1>Glass UI Gallery</h1>
+      <p>Explore premium macOS-style interfaces with floating 3D icons, glass morphism, and beautiful animations. Built with pure CSS/HTML/JS.</p>
+    </header>
+
+    <div class="demo-grid">
+      <!-- PREMIUM - Featured -->
+      <a href="premium-detail.html" class="demo-card featured copper">
+        <span class="featured-badge">New</span>
+        <div class="card-content">
+          <div class="card-icon">⚡</div>
+          <div class="card-info">
+            <h2 class="card-title">Premium Detail Edition</h2>
+            <p class="card-description">Maximum attention to detail. Clay/ceramic material rendering, properly contained reflections, iOS-style squircle shapes, monochromatic sidebar icons, and smooth parallax. The closest to CleanMyMac quality.</p>
+            <div class="card-tags">
+              <span class="tag">Clay Material</span>
+              <span class="tag">Sidebar Icons</span>
+              <span class="tag">Squircle</span>
+              <span class="tag">Premium Reflections</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Copper Performance -->
+      <a href="copper-performance.html" class="demo-card copper">
+        <div class="card-content">
+          <div class="card-icon">⚡</div>
+          <div class="card-info">
+            <h2 class="card-title">Copper Performance</h2>
+            <p class="card-description">Lightning bolt icon with warm copper gradients. Features task list UI with live progress simulation.</p>
+            <div class="card-tags">
+              <span class="tag">Rounded Square</span>
+              <span class="tag">Task List</span>
+              <span class="tag">Parallax</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Teal Folder -->
+      <a href="teal-folder.html" class="demo-card teal">
+        <div class="card-content">
+          <div class="card-icon">📁</div>
+          <div class="card-info">
+            <h2 class="card-title">Teal Folder</h2>
+            <p class="card-description">Organic blob shape with morphing animation. Floating folder icon with particle effects.</p>
+            <div class="card-tags">
+              <span class="tag">Blob Shape</span>
+              <span class="tag">Morph Anim</span>
+              <span class="tag">Particles</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Purple Security -->
+      <a href="purple-security.html" class="demo-card purple">
+        <div class="card-content">
+          <div class="card-icon">🛡</div>
+          <div class="card-info">
+            <h2 class="card-title">Purple Security</h2>
+            <p class="card-description">Shield-shaped icon with animated checkmark. Progress ring and sparkle effects.</p>
+            <div class="card-tags">
+              <span class="tag">Shield Shape</span>
+              <span class="tag">Draw Anim</span>
+              <span class="tag">Sparkles</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Green Cleanup -->
+      <a href="green-cleanup.html" class="demo-card green">
+        <div class="card-content">
+          <div class="card-icon">🍃</div>
+          <div class="card-info">
+            <h2 class="card-title">Green Cleanup</h2>
+            <p class="card-description">Hexagon icon with leaf symbol. Stats grid with animated counters and floating leaves.</p>
+            <div class="card-tags">
+              <span class="tag">Hexagon</span>
+              <span class="tag">Stats Grid</span>
+              <span class="tag">Counter Anim</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Blue Cloud -->
+      <a href="blue-cloud.html" class="demo-card blue">
+        <div class="card-content">
+          <div class="card-icon">☁️</div>
+          <div class="card-info">
+            <h2 class="card-title">Blue Cloud</h2>
+            <p class="card-description">Pill-shaped icon with cloud and sync animation. Upload progress with file list UI.</p>
+            <div class="card-tags">
+              <span class="tag">Pill Shape</span>
+              <span class="tag">Sync Rotate</span>
+              <span class="tag">Data Stream</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Premium Teal -->
+      <a href="premium-teal.html" class="demo-card teal">
+        <div class="card-content">
+          <div class="card-icon">📁</div>
+          <div class="card-info">
+            <h2 class="card-title">Premium Teal</h2>
+            <p class="card-description">Organic morphing blob with clay material. Monochromatic sidebar, contained reflections.</p>
+            <div class="card-tags">
+              <span class="tag">Clay Material</span>
+              <span class="tag">Blob Morph</span>
+              <span class="tag">Sidebar</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Premium Purple -->
+      <a href="premium-purple.html" class="demo-card purple">
+        <div class="card-content">
+          <div class="card-icon">🛡</div>
+          <div class="card-info">
+            <h2 class="card-title">Premium Purple</h2>
+            <p class="card-description">Shield shape with inner depth shadows. Animated checkmark, progress ring, sparkles.</p>
+            <div class="card-tags">
+              <span class="tag">Clay Material</span>
+              <span class="tag">Shield</span>
+              <span class="tag">Sidebar</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Premium Green -->
+      <a href="premium-green.html" class="demo-card green">
+        <div class="card-content">
+          <div class="card-icon">🍃</div>
+          <div class="card-info">
+            <h2 class="card-title">Premium Green</h2>
+            <p class="card-description">Hexagon with ceramic material. Stats grid, animated counters, floating leaves.</p>
+            <div class="card-tags">
+              <span class="tag">Clay Material</span>
+              <span class="tag">Hexagon</span>
+              <span class="tag">Sidebar</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+
+      <!-- Premium Blue -->
+      <a href="premium-blue.html" class="demo-card blue">
+        <div class="card-content">
+          <div class="card-icon">☁️</div>
+          <div class="card-info">
+            <h2 class="card-title">Premium Blue</h2>
+            <p class="card-description">Pill shape with soft ceramic finish. Sync animation, data streams, file list.</p>
+            <div class="card-tags">
+              <span class="tag">Clay Material</span>
+              <span class="tag">Pill</span>
+              <span class="tag">Sidebar</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </a>
+    </div>
+
+    <footer class="footer">
+      <p>Created with CSS transforms, gradients, and animations</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="GLASS-UI-GUIDE.md" class="guide-link">
+          <span>📖</span>
+          <span>Quick Reference Guide</span>
+        </a>
+        <a href="HOW-IT-WAS-BUILT.md" class="guide-link">
+          <span>🔬</span>
+          <span>Deep Technical Breakdown</span>
+        </a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

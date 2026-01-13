@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Detail - Glass UI Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Warm copper palette - more refined */
+      --warm-50: #fdf8f3;
+      --warm-100: #f9ede0;
+      --warm-200: #f0d4b8;
+      --warm-300: #e5b78a;
+      --warm-400: #d4935a;
+      --warm-500: #c67d45;
+      --warm-600: #b56839;
+      --warm-700: #96502f;
+      --warm-800: #7a412c;
+      --warm-900: #643827;
+      --warm-950: #3a1c12;
+
+      /* Monochromatic icon colors (matching theme) */
+      --icon-base: #c9a892;
+      --icon-light: #e8d5c4;
+      --icon-dark: #8b6b56;
+      --icon-shadow: #5a3d2e;
+
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.08);
+
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.45);
+    }
+
+    body {
+      font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(165deg,
+        #8b5a3c 0%,
+        #6d4532 25%,
+        #5a3828 50%,
+        #4a2d20 75%,
+        #3a2218 100%
+      );
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 72px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      gap: 8px;
+      position: relative;
+      z-index: 20;
+    }
+
+    /* Sidebar icons - Clay/Ceramic style */
+    .sidebar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .sidebar-icon:hover {
+      transform: scale(1.08);
+    }
+
+    .sidebar-icon.active {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 6px;
+    }
+
+    .sidebar-icon.active .icon-3d-small {
+      transform: scale(1.1);
+    }
+
+    /* Small 3D icon (sidebar) - Clay style */
+    .icon-3d-small {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      border-radius: 8px;
+      /* Squircle approximation */
+      background: linear-gradient(
+        145deg,
+        var(--icon-light) 0%,
+        var(--icon-base) 40%,
+        var(--icon-dark) 100%
+      );
+      box-shadow:
+        /* Outer shadow for depth */
+        0 3px 6px rgba(0, 0, 0, 0.25),
+        0 6px 12px rgba(0, 0, 0, 0.15),
+        /* Inner highlight (top-left) */
+        inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+        /* Inner shadow (bottom-right) */
+        inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+      /* Center content */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* SVG icons for sidebar - properly centered */
+    .sidebar-svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--warm-950);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.6;
+      filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.25));
+      /* Ensure perfect centering */
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* Main content area */
+    .main-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    /* Glass panel */
+    .glass-panel {
+      position: relative;
+      width: 720px;
+      min-height: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(60px) saturate(180%);
+      -webkit-backdrop-filter: blur(60px) saturate(180%);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      animation: panel-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(30px) scale(0.97);
+    }
+
+    @keyframes panel-in {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Window controls */
+    .window-controls {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .win-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .win-dot::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      width: 5px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+    }
+
+    .win-dot.close { background: linear-gradient(180deg, #ff6b5e 0%, #e84c3d 100%); }
+    .win-dot.minimize { background: linear-gradient(180deg, #ffca2c 0%, #dda620 100%); }
+    .win-dot.maximize { background: linear-gradient(180deg, #2dd257 0%, #1fb344 100%); }
+
+    .tab-label {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* ============================================
+       PREMIUM 3D FLOATING ICON - CLAY/CERAMIC STYLE
+       ============================================ */
+    .icon-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+    }
+
+    .floating-icon-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      transform-style: preserve-3d;
+      animation: gentle-float 7s ease-in-out infinite;
+    }
+
+    @keyframes gentle-float {
+      0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+      }
+      25% {
+        transform: translateY(-14px) rotateX(4deg) rotateY(-6deg);
+      }
+      50% {
+        transform: translateY(-8px) rotateX(-3deg) rotateY(4deg);
+      }
+      75% {
+        transform: translateY(-18px) rotateX(3deg) rotateY(-4deg);
+      }
+    }
+
+    .floating-icon {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Base layer - smooth ceramic look */
+    .icon-base-premium {
+      position: absolute;
+      inset: 0;
+      /* iOS-style squircle using SVG mask */
+      border-radius: 52px;
+      background: linear-gradient(
+        155deg,
+        var(--warm-200) 0%,
+        var(--warm-300) 20%,
+        var(--warm-400) 45%,
+        var(--warm-500) 65%,
+        var(--warm-600) 85%,
+        var(--warm-700) 100%
+      );
+      box-shadow:
+        /* Main drop shadow */
+        0 25px 50px rgba(58, 28, 18, 0.5),
+        0 12px 24px rgba(58, 28, 18, 0.3),
+        /* Ambient glow */
+        0 0 60px rgba(198, 125, 69, 0.25),
+        /* Inner top highlight - soft edge */
+        inset 0 4px 8px rgba(255, 255, 255, 0.35),
+        /* Inner bottom shadow - soft edge */
+        inset 0 -6px 16px rgba(58, 28, 18, 0.25),
+        /* Left edge highlight */
+        inset 4px 0 8px rgba(255, 255, 255, 0.1);
+      transform: translateZ(-18px);
+    }
+
+    /* Secondary depth layer */
+    .icon-depth {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50px;
+      background: linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 30%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.05) 80%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      transform: translateZ(-10px);
+    }
+
+    /* Glass/glaze overlay - contained within shape */
+    .icon-glaze {
+      position: absolute;
+      inset: 8px;
+      border-radius: 46px;
+      background: linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.12) 25%,
+        rgba(255, 255, 255, 0.03) 50%,
+        transparent 70%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
+      /* Ensure reflection stays contained */
+      overflow: hidden;
+      transform: translateZ(8px);
+    }
+
+    /* Top reflection - properly contained crescent */
+    .icon-reflection-premium {
+      position: absolute;
+      top: 14px;
+      left: 28px;
+      right: 28px;
+      height: 55px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.2) 40%,
+        rgba(255, 255, 255, 0.05) 70%,
+        transparent 100%
+      );
+      border-radius: 40px 40px 80px 80px;
+      /* Mask to keep it contained */
+      mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 60%, transparent 100%);
+      transform: translateZ(12px);
+      opacity: 0.9;
+    }
+
+    /* Lightning bolt - premium SVG */
+    .icon-symbol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(22px);
+      width: 75px;
+      height: 95px;
+    }
+
+    .bolt-premium {
+      fill: var(--warm-50);
+      filter: drop-shadow(0 3px 6px rgba(58, 28, 18, 0.4));
+    }
+
+    /* Soft shadow beneath */
+    .icon-ground-shadow {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(-50px);
+      width: 170px;
+      height: 45px;
+      background: radial-gradient(
+        ellipse 100% 100%,
+        rgba(58, 28, 18, 0.45) 0%,
+        rgba(58, 28, 18, 0.2) 40%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      animation: shadow-breathe 7s ease-in-out infinite;
+    }
+
+    @keyframes shadow-breathe {
+      0%, 100% { transform: translateX(-50%) translateZ(-50px) scale(1); opacity: 0.7; }
+      25% { transform: translateX(-50%) translateZ(-50px) scale(0.88); opacity: 0.5; }
+      50% { transform: translateX(-50%) translateZ(-50px) scale(0.92); opacity: 0.55; }
+      75% { transform: translateX(-50%) translateZ(-50px) scale(0.85); opacity: 0.45; }
+    }
+
+    /* ============================================
+       PREMIUM TASK LIST ICONS
+       ============================================ */
+    .content-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .content-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 28px;
+      letter-spacing: -0.3px;
+      animation: text-in 0.6s ease-out 0.4s both;
+    }
+
+    @keyframes text-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .task-list-premium {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .task-item-premium {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.25s ease;
+      animation: task-in 0.5s ease-out both;
+    }
+
+    .task-item-premium:nth-child(1) { animation-delay: 0.5s; }
+    .task-item-premium:nth-child(2) { animation-delay: 0.6s; }
+    .task-item-premium:nth-child(3) { animation-delay: 0.7s; }
+    .task-item-premium:nth-child(4) { animation-delay: 0.8s; }
+    .task-item-premium:nth-child(5) { animation-delay: 0.9s; }
+
+    @keyframes task-in {
+      from { opacity: 0; transform: translateX(-12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .task-item-premium:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(4px);
+    }
+
+    /* Premium task icon - iOS style with depth */
+    .task-icon-premium {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      /* 3D depth effect */
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.15),
+        inset 0 2px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .task-icon-premium.red {
+      background: linear-gradient(155deg, #ff8a7a 0%, #ff6b5b 40%, #e84c3d 100%);
+    }
+    .task-icon-premium.orange {
+      background: linear-gradient(155deg, #ffd280 0%, #ffb74d 40%, #f5a623 100%);
+    }
+    .task-icon-premium.pink {
+      background: linear-gradient(155deg, #ffb3d9 0%, #ff85c0 40%, #e85da0 100%);
+    }
+    .task-icon-premium.blue {
+      background: linear-gradient(155deg, #8ecfff 0%, #5eb3f7 40%, #3498db 100%);
+    }
+    .task-icon-premium.purple {
+      background: linear-gradient(155deg, #c9a8ff 0%, #a378f0 40%, #8257e5 100%);
+    }
+
+    /* Icon inner symbol */
+    .task-icon-premium svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.95);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Small text label inside icon */
+    .task-icon-premium .icon-text {
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .task-label-premium {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .task-status-premium {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .status-done {
+      color: var(--warm-300);
+      font-size: 15px;
+    }
+
+    .status-loading {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--warm-300);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .status-waiting {
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+    }
+
+    /* Stop button */
+    .btn-stop {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 22px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      animation: task-in 0.5s ease-out 1.1s both;
+    }
+
+    .btn-stop:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Subtle background elements */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.35;
+      animation: orb-drift 25s ease-in-out infinite;
+    }
+
+    .glow-orb.a {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--warm-500) 0%, transparent 70%);
+      top: -150px;
+      right: -100px;
+    }
+
+    .glow-orb.b {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--warm-400) 0%, transparent 70%);
+      bottom: -100px;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    @keyframes orb-drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-30px, 20px); }
+    }
+
+    /* Navigation */
+    .nav-back {
+      position: fixed;
+      top: 20px;
+      left: 90px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background glows -->
+  <div class="bg-glow">
+    <div class="glow-orb a"></div>
+    <div class="glow-orb b"></div>
+  </div>
+
+  <!-- Navigation -->
+  <a href="index.html" class="nav-back">← All Demos</a>
+
+  <!-- Sidebar with premium 3D icons -->
+  <aside class="sidebar">
+    <!-- iMac/Display -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="12" rx="2"/>
+          <line x1="12" y1="15" x2="12" y2="19"/>
+          <line x1="8" y1="19" x2="16" y2="19"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Yin-Yang / Balance -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="8" r="1.5" fill="currentColor"/>
+          <circle cx="12" cy="16" r="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Hand -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <path d="M18 11V6a2 2 0 0 0-4 0v5"/>
+          <path d="M14 10V4a2 2 0 0 0-4 0v6"/>
+          <path d="M10 10V5a2 2 0 0 0-4 0v9a7 7 0 0 0 14 0v-4a2 2 0 0 0-4 0"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Lightning (Active) -->
+    <div class="sidebar-icon active">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Tools/Maintenance -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Folder -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+    </div>
+
+    <div style="flex: 1;"></div>
+
+    <!-- Cloud -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="sidebar-icon">
+      <div class="icon-3d-small">
+        <svg class="sidebar-svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-area">
+    <div class="glass-panel">
+      <!-- Window controls -->
+      <div class="window-controls">
+        <div class="win-dot close"></div>
+        <div class="win-dot minimize"></div>
+        <div class="win-dot maximize"></div>
+      </div>
+
+      <div class="tab-label">Performance</div>
+
+      <!-- Premium 3D Floating Icon -->
+      <div class="icon-section">
+        <div class="floating-icon-wrapper" id="floatingIcon">
+          <div class="floating-icon">
+            <!-- Base ceramic layer -->
+            <div class="icon-base-premium"></div>
+            <!-- Depth layer -->
+            <div class="icon-depth"></div>
+            <!-- Glaze overlay -->
+            <div class="icon-glaze"></div>
+            <!-- Top reflection (contained) -->
+            <div class="icon-reflection-premium"></div>
+
+            <!-- Lightning bolt symbol -->
+            <svg class="icon-symbol" viewBox="0 0 75 95">
+              <path class="bolt-premium" d="M42 0 L15 42 L32 42 L28 95 L60 48 L40 48 L48 0 Z"/>
+            </svg>
+          </div>
+          <div class="icon-ground-shadow"></div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content-section">
+        <h1 class="content-title">Running maintenance tasks...</h1>
+
+        <div class="task-list-premium">
+          <!-- DNS -->
+          <div class="task-item-premium">
+            <div class="task-icon-premium red">
+              <span class="icon-text">DNS</span>
+            </div>
+            <span class="task-label-premium">Flush DNS Cache</span>
+            <div class="task-status-premium">
+              <span class="status-done">✓</span>
+            </div>
+          </div>
+
+          <!-- Mail -->
+          <div class="task-item-premium">
+            <div class="task-icon-premium orange">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M22 6l-10 7-10-7"/>
+              </svg>
+            </div>
+            <span class="task-label-premium">Speed Up Mail</span>
+            <div class="task-status-premium">
+              <span class="status-done">✓</span>
+            </div>
+          </div>
+
+          <!-- Disk -->
+          <div class="task-item-premium">
+            <div class="task-icon-premium pink">
+              <svg viewBox="0 0 24 24">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <span class="task-label-premium">Repair Disk Permissions</span>
+            <div class="task-status-premium">
+              <div class="status-loading"></div>
+            </div>
+          </div>
+
+          <!-- Spotlight -->
+          <div class="task-item-premium">
+            <div class="task-icon-premium blue">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <span class="task-label-premium">Reindex Spotlight</span>
+            <div class="task-status-premium">
+              <div class="status-waiting"></div>
+            </div>
+          </div>
+
+          <!-- Storage -->
+          <div class="task-item-premium">
+            <div class="task-icon-premium purple">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <line x1="6" y1="12" x2="6" y2="12.01"/>
+              </svg>
+            </div>
+            <span class="task-label-premium">Free Up Purgeable Space</span>
+            <div class="task-status-premium">
+              <div class="status-waiting"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-stop">Stop</button>
+    </div>
+  </main>
+
+  <script>
+    // Smooth parallax for floating icon
+    const floatingIcon = document.getElementById('floatingIcon');
+    const panel = document.querySelector('.glass-panel');
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    panel.addEventListener('mousemove', (e) => {
+      const rect = panel.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width - 0.5;
+      targetY = (e.clientY - rect.top) / rect.height - 0.5;
+    });
+
+    panel.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function animate() {
+      // Smooth interpolation
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      const rotateX = currentY * -12;
+      const rotateY = currentX * 12;
+      const floatY = Math.sin(Date.now() / 1000) * 12;
+
+      floatingIcon.style.transform = `
+        translateY(${floatY}px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Task progression
+    const tasks = document.querySelectorAll('.task-item-premium');
+    let currentTask = 2;
+
+    function completeTask(index) {
+      if (index >= tasks.length) return;
+
+      const task = tasks[index];
+      const status = task.querySelector('.task-status-premium');
+      status.innerHTML = '<span class="status-done">✓</span>';
+
+      if (index + 1 < tasks.length) {
+        const nextStatus = tasks[index + 1].querySelector('.task-status-premium');
+        nextStatus.innerHTML = '<div class="status-loading"></div>';
+        setTimeout(() => completeTask(index + 1), 2500 + Math.random() * 1500);
+      }
+    }
+
+    setTimeout(() => completeTask(currentTask), 3000);
+  </script>
+</body>
+</html>

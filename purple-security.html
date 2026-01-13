@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purple Security - Glass UI Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --purple-700: #7c3aed;
+      --purple-800: #5b21b6;
+      --purple-900: #3b0764;
+
+      --glass-bg: rgba(255, 255, 255, 0.07);
+      --glass-border: rgba(255, 255, 255, 0.12);
+
+      --text-primary: rgba(255, 255, 255, 0.95);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.5);
+
+      --glow: rgba(168, 85, 247, 0.5);
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(150deg, var(--purple-700) 0%, var(--purple-800) 35%, var(--purple-900) 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Navigation */
+    .nav-back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      transform: translateX(-4px);
+    }
+
+    /* Background effects */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.6;
+      animation: float-orb 22s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--purple-500) 0%, transparent 70%);
+      top: -200px;
+      left: -100px;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--purple-400) 0%, transparent 70%);
+      bottom: -150px;
+      right: -100px;
+      animation-delay: -8s;
+    }
+
+    .orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+      top: 50%;
+      right: 20%;
+      animation-delay: -15s;
+    }
+
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      33% { transform: translate(50px, -30px) scale(1.1) rotate(5deg); }
+      66% { transform: translate(-30px, 40px) scale(0.9) rotate(-5deg); }
+    }
+
+    /* Glass panel */
+    .glass-panel {
+      position: relative;
+      z-index: 10;
+      width: 680px;
+      min-height: 420px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(50px) saturate(200%);
+      -webkit-backdrop-filter: blur(50px) saturate(200%);
+      border-radius: 28px;
+      border: 1px solid var(--glass-border);
+      box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 2px 0 rgba(255, 255, 255, 0.1) inset;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      animation: panel-appear 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+
+    @keyframes panel-appear {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Window controls */
+    .window-controls {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .window-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .window-dot:hover { transform: scale(1.15); }
+    .dot-close { background: #ff5f57; }
+    .dot-minimize { background: #febc2e; }
+    .dot-maximize { background: #28c840; }
+
+    /* 3D Shield Icon */
+    .icon-section {
+      perspective: 1000px;
+    }
+
+    .icon-3d-wrapper {
+      position: relative;
+      width: 200px;
+      height: 220px;
+      transform-style: preserve-3d;
+      animation: icon-float 6s ease-in-out infinite;
+    }
+
+    @keyframes icon-float {
+      0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+      }
+      25% {
+        transform: translateY(-14px) rotateX(5deg) rotateY(-8deg);
+      }
+      50% {
+        transform: translateY(-8px) rotateX(-4deg) rotateY(5deg);
+      }
+      75% {
+        transform: translateY(-18px) rotateX(3deg) rotateY(-4deg);
+      }
+    }
+
+    .icon-3d {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Shield shape */
+    .icon-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        var(--purple-300) 0%,
+        var(--purple-400) 25%,
+        var(--purple-500) 50%,
+        var(--purple-600) 75%,
+        var(--purple-800) 100%
+      );
+      clip-path: polygon(50% 0%, 100% 15%, 100% 70%, 50% 100%, 0% 70%, 0% 15%);
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 80px var(--glow);
+      transform: translateZ(-20px);
+    }
+
+    .icon-base::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        transparent 40%
+      );
+      clip-path: polygon(50% 0%, 100% 15%, 100% 70%, 50% 100%, 0% 70%, 0% 15%);
+    }
+
+    /* Inner shield layer */
+    .icon-glass {
+      position: absolute;
+      inset: 12px;
+      background: linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      clip-path: polygon(50% 5%, 95% 18%, 95% 68%, 50% 95%, 5% 68%, 5% 18%);
+      transform: translateZ(10px);
+    }
+
+    /* Top reflection */
+    .icon-reflection {
+      position: absolute;
+      top: 8px;
+      left: 30px;
+      right: 30px;
+      height: 50px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.1) 60%,
+        transparent 100%
+      );
+      clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
+      transform: translateZ(15px);
+    }
+
+    /* Checkmark symbol */
+    .icon-check {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%) translateZ(28px);
+      width: 60px;
+      height: 60px;
+    }
+
+    .check-svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--purple-100);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: draw-check 1s ease-out 0.8s forwards;
+    }
+
+    @keyframes draw-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Shadow */
+    .icon-shadow {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(-50px);
+      width: 140px;
+      height: 35px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+      animation: shadow-pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes shadow-pulse {
+      0%, 100% { transform: translateX(-50%) translateZ(-50px) scale(1); opacity: 0.6; }
+      50% { transform: translateX(-50%) translateZ(-50px) scale(0.8); opacity: 0.35; }
+    }
+
+    /* Content */
+    .content-text {
+      text-align: center;
+      animation: text-appear 0.7s ease-out 0.4s both;
+    }
+
+    @keyframes text-appear {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-title {
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .content-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Progress ring */
+    .progress-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      animation: text-appear 0.7s ease-out 0.6s both;
+    }
+
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring-bg {
+      stroke: rgba(255, 255, 255, 0.1);
+      fill: none;
+    }
+
+    .progress-ring-fill {
+      stroke: var(--purple-400);
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 251;
+      stroke-dashoffset: 251;
+      animation: progress-fill 2s ease-out 1s forwards;
+      filter: drop-shadow(0 0 8px var(--glow));
+    }
+
+    @keyframes progress-fill {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    body:hover .cursor-glow { opacity: 1; }
+
+    /* Sparkles */
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle-pop 3s ease-in-out infinite;
+    }
+
+    .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { top: 30%; right: 20%; animation-delay: 0.5s; }
+    .sparkle:nth-child(3) { bottom: 25%; left: 25%; animation-delay: 1s; }
+    .sparkle:nth-child(4) { top: 15%; right: 30%; animation-delay: 1.5s; }
+    .sparkle:nth-child(5) { bottom: 35%; right: 15%; animation-delay: 2s; }
+    .sparkle:nth-child(6) { top: 45%; left: 10%; animation-delay: 2.5s; }
+
+    @keyframes sparkle-pop {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 0.8; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <a href="index.html" class="nav-back">
+    <span>←</span>
+    <span>All Demos</span>
+  </a>
+
+  <!-- Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Sparkles -->
+  <div class="sparkles">
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+  </div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Glass panel -->
+  <div class="glass-panel">
+    <div class="window-controls">
+      <div class="window-dot dot-close"></div>
+      <div class="window-dot dot-minimize"></div>
+      <div class="window-dot dot-maximize"></div>
+    </div>
+
+    <!-- 3D Shield Icon -->
+    <div class="icon-section">
+      <div class="icon-3d-wrapper" id="iconWrapper">
+        <div class="icon-3d">
+          <div class="icon-base"></div>
+          <div class="icon-glass"></div>
+          <div class="icon-reflection"></div>
+
+          <!-- Checkmark -->
+          <div class="icon-check">
+            <svg class="check-svg" viewBox="0 0 60 60">
+              <polyline points="12,32 26,46 48,18"/>
+            </svg>
+          </div>
+        </div>
+        <div class="icon-shadow"></div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="content-text">
+      <h1 class="content-title">Privacy Protected</h1>
+      <p class="content-subtitle">Your system is secure and optimized</p>
+    </div>
+
+    <!-- Progress ring -->
+    <div class="progress-container">
+      <svg class="progress-ring" width="100" height="100">
+        <circle class="progress-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
+        <circle class="progress-ring-fill" cx="50" cy="50" r="40" stroke-width="8"/>
+      </svg>
+      <span class="progress-text">100%</span>
+    </div>
+  </div>
+
+  <script>
+    // Cursor glow
+    const cursorGlow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Parallax
+    const iconWrapper = document.getElementById('iconWrapper');
+    const panel = document.querySelector('.glass-panel');
+
+    panel.addEventListener('mousemove', (e) => {
+      const rect = panel.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      iconWrapper.style.transform = `
+        translateY(${Math.sin(Date.now() / 1000) * 12}px)
+        rotateX(${y * -15}deg)
+        rotateY(${x * 15}deg)
+      `;
+    });
+
+    panel.addEventListener('mouseleave', () => {
+      iconWrapper.style.transform = '';
+    });
+  </script>
+</body>
+</html>
